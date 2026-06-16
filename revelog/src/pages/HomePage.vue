@@ -2,9 +2,11 @@
   <section class="resume-section">
     <table class="resume-table">
       <thead>
-        <th>Profile_</th>
-        <th>Position_</th>
-        <th>Contact_</th>
+        <tr>
+          <th>Profile_</th>
+          <th>Position_</th>
+          <th>Contact_</th>
+        </tr>
       </thead>
       <tbody>
         <tr class="profile-row">
