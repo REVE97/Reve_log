@@ -1,15 +1,13 @@
 <template>
-  <nav>
-    <RouterLink to="/">Home</RouterLink>
-  </nav>
-  
-  <RouterView />
+  <div class="app-layout">
+    <Sidebar />
+
+    <main class="main-content">
+      <RouterView />
+    </main>
+  </div>
 </template>
 
-<script>
-
+<script setup>
+import Sidebar from './components/Sidebar.vue';
 </script>
-
-<style>
-  
-</style>

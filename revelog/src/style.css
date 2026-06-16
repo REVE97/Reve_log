@@ -1,10 +1,14 @@
+/* 기본 속성 */
 :root {
   --color-primary: #777777;
+  --color-secondary: #3E5066;
 
   --color-bg: #F0EEE9;
- 
-  --color-text: #222222;
+  
+  --color-white: #FFFFFF;
+  --color-text: #000000;
   --color-subtext: #777777;
+
   --color-border: #e5e5ec;
 
   --radius-sm: 8px;
@@ -59,4 +63,193 @@ img,
 video {
   max-width: 100%;
   display: block;
+}
+
+/* 레이아웃 */
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  min-height: 100vh;
+  padding: 32px;
+  background-color: var(--color-bg);
+}
+
+/* 사이드 네비게이션 바 */
+.sidebar {
+  width: 200px;
+  min-height: 100vh;
+  padding: 24px 16px;
+  background-color: var(--color-bg);
+  flex-shrink: 0;
+}
+
+.sidebar-logo {
+  margin-bottom: 32px;
+  padding: 0 8px;
+  width: 130px;
+  height: 130px;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nav-item {
+  padding: 12px 14px;
+  border-radius: 10px;
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.nav-item.router-link-active {
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+  font-weight: 700;
+}
+
+/* 테이블 */
+.resume-section {
+  width: 100%;
+  min-height: 100vh;
+  padding: 72px 80px;
+}
+
+.resume-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.resume-table th {
+  padding-bottom: 28px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.resume-table td {
+  padding: 26px 26px 26px 0;
+  vertical-align: top;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.resume-table th:nth-child(1),
+.resume-table td:nth-child(1) {
+  width: 25%;
+}
+
+.resume-table th:nth-child(2),
+.resume-table td:nth-child(2) {
+  width: 25%;
+}
+
+.resume-table th:nth-child(3),
+.resume-table td:nth-child(3) {
+  width: 50%;
+}
+
+.profile-row td {
+  padding-top: 0;
+  padding-bottom: 30px;
+}
+
+.resume-table strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.resume-table span {
+  display: block;
+  margin-top: 4px;
+  color: var(--color-text);
+}
+
+.resume-table a {
+  color: var(--color-text);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.company-name {
+  display: inline-block;
+  margin-bottom: 4px;
+}
+
+.resume-table ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.resume-table li {
+  margin-bottom: 10px;
+  word-break: keep-all;
+}
+
+.resume-table li::before {
+  content: "-";
+  margin-right: 2px;
+}
+
+.profile-row {
+  border-bottom: 1px solid var(--color-secondary);
+}
+
+.company-cell {
+  vertical-align: top;
+}
+
+@media (max-width: 900px) {
+  .resume-section {
+    padding: 40px 24px;
+  }
+
+  .resume-table,
+  .resume-table thead,
+  .resume-table tbody,
+  .resume-table tr,
+  .resume-table th,
+  .resume-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .resume-table thead {
+    display: none;
+  }
+
+  .resume-table td {
+    padding: 12px 0;
+    font-size: 12px;
+  }
+
+  .career-row {
+    display: block;
+    padding: 36px 0;
+  }
+
+  .profile-row {
+    padding-bottom: 48px;
+  }
+
+  .profile-row td {
+    padding-bottom: 16px;
+  }
+
+  .resume-table strong {
+    font-size: 12px;
+  }
 }
