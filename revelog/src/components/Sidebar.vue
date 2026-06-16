@@ -4,11 +4,15 @@
       <img :src="logo" alt="logo"/>
     </div>
 
-    <!-- <div class="sidebar-link">
-      <img :src="github" alt="github" />
-      <img :src="velog" alt="velog" />
-    </div> -->
-
+    <div class="sidebar-link">
+      <a href="https://github.com/REVE97" target="_blank">
+        <img :src="github" alt="github" />
+      </a>
+      <a href="https://velog.io/@zxcv9675/posts" target="_blank">
+        <img :src="velog" alt="velog" />
+      </a>
+    </div>
+    
     <nav class="sidebar-nav">
       <RouterLink to="/" class="nav-item">
         Resume
