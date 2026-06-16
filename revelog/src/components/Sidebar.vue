@@ -18,9 +18,9 @@
         Resume
       </RouterLink>
 
-      <RouterLink to="/project" class="nav-item">
+      <!-- <RouterLink to="/project" class="nav-item">
         Project
-      </RouterLink>
+      </RouterLink> -->
     </nav>
   </aside>
 </template>
