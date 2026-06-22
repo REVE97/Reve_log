@@ -64,6 +64,18 @@
           <td>
             <ul>
               <li>천재교과서 · 해법에듀 상용 교육 화상 서비스 솔루션의 프론트엔드 마이그레이션 담당</li>
+              <li>
+                <a
+                  href="https://cocopen.net"
+                  target="_blank"
+                >cocopen</a>
+                ·
+                <a
+                  href="https://cococall.net"
+                  target="_blank"
+                >cococall</a>
+                등 상용 화상 서비스의 자료 공유, 화이트보드, 화면 공유 기능 개선 및 유지보수
+              </li>
               <li>Vue 프로젝트 버전 업그레이드와 Webpack + Babel 기반 빌드 구조를 Vite 기반 구조로 전환</li>
               <li>개발 서버 및 TB 서버 · 운영 서버 빌드 시간 개선을 통해 빌드 효율 약 94% 향상</li>
             </ul>
