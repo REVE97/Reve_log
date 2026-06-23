@@ -24,7 +24,7 @@
         
         <!-- KnowledgePoint 경력 기술서 파트 -->
         <tr class="career-row">
-          <td rowspan="2" class="company-cell">
+          <td rowspan="3" class="company-cell">
             <a 
               href="https://knowledgepoint.co.kr" 
               class="company-name"
@@ -49,7 +49,7 @@
             </ul>
           </td>
         </tr>
-
+        
         <tr class="career-row">
           <td>
             <a
@@ -78,6 +78,20 @@
               </li>
               <li>Vue 프로젝트 버전 업그레이드와 Webpack + Babel 기반 빌드 구조를 Vite 기반 구조로 전환</li>
               <li>개발 서버 및 TB 서버 · 운영 서버 빌드 시간 개선을 통해 빌드 효율 약 94% 향상</li>
+            </ul>
+          </td>
+        </tr>
+
+        <tr class="career-row">
+          <td>
+            <a href="#">서비스 기능 테스트 자동화 도입</a>
+            <span>2026.06 - Present</span>
+          </td>
+
+          <td>
+            <ul>
+              <li>여러 상용 화상 서비스 · 관리자 페이지에 대한 기능 정상 테스트 자동화 시스템 도입</li>
+              <li>Vue 프레임워크 및 Playwright 라이브러리 활용</li>
             </ul>
           </td>
         </tr>
