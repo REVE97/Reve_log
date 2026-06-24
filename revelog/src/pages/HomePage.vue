@@ -85,7 +85,9 @@
         <tr class="career-row">
           <td>
             <a 
-              href="https://velog.io/@zxcv9675/라이브러리-Playwright">
+              href="https://velog.io/@zxcv9675/라이브러리-Playwright"
+              target="_blank"
+            >
               서비스 기능 테스트 자동화 도입</a>
             <span>2026.06 - Present</span>
           </td>
