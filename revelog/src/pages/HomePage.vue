@@ -63,7 +63,12 @@
 
           <td>
             <ul>
-              <li>천재교과서 · 해법에듀 상용 교육 화상 서비스 솔루션의 프론트엔드 마이그레이션 담당</li>
+              <li>천재교과서
+                <a
+                  href="https://i.milkt.co.kr/"
+                  target="_blank"
+                >(밀크티아이)</a>
+                · 해법에듀 상용 교육 화상 서비스 솔루션의 프론트엔드 마이그레이션 담당</li>
               <li>
                 <a
                   href="https://cocopen.net"
