@@ -26,7 +26,7 @@
 </template>
 
 <script setup>
-import logo from '../assets/default_logo_clear.png'
+import logo from '../assets/reve_logo.svg'
 import github from '../assets/github_clear.svg'
 import velog from '../assets/velog_clear.svg'
 </script>
