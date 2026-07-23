@@ -35,15 +35,20 @@
             <span>Solution Development Team</span>
             <span>2026 - Present</span>
           </td>
-
           <td>
-            <strong>OTA - SUMS / VSOC</strong>
+            <a 
+              href="https://www.tata-daewoo.com/xenLink/xenLink_1" 
+              class="company-name"
+              target="_blank"
+            >
+              OTA - SUMS / VSOC
+            </a>
             <span>2026.01 - 2026.04</span>
           </td>
 
           <td>
             <ul>
-              <li>타타대우모빌리티 상용차 차량 관리 플랫폼 VSOC 파트 프론트엔드 개발 담당</li>
+              <li>타타대우모빌리티 XENLINK 연동 상용차 차량 관리 플랫폼 VSOC 파트 프론트엔드 개발 담당</li>
               <li>Vue3 기반 실시간 차량 이벤트 데이터 조회 및 시각화 UI 구현</li>
               <li>REST API 연동 및 Pinia를 활용한 차량 이벤트 데이터 상태 관리 구현</li>
             </ul>
