@@ -52,12 +52,7 @@
 
         <tr class="career-row">
           <td>
-            <a
-              href="https://cococall.net"
-              target="_blank"
-            >
-            Migration
-          </a>
+            <strong>Migration</strong>
             <span>2026.04 - Present</span>
           </td>
 
@@ -76,9 +71,9 @@
                 >cocopen</a>
                 ·
                 <a
-                  href="https://cococall.net"
+                  href="https://sem.cococall.net/"
                   target="_blank"
-                >cococall</a>
+                >cocosem</a>
                 등 상용 화상 서비스의 자료 공유, 화이트보드, 화면 공유 기능 개선 및 유지보수
               </li>
               <li>Vue 프로젝트 버전 업그레이드와 Webpack + Babel 기반 빌드 구조를 Vite 기반 구조로 전환</li>
