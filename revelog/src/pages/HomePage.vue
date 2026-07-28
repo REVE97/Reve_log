@@ -58,7 +58,7 @@
         <tr class="career-row">
           <td>
             <strong>Migration</strong>
-            <span>2026.04 - Present</span>
+            <span>2026.04 - 2026.06</span>
           </td>
 
           <td>
