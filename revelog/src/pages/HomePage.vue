@@ -94,7 +94,7 @@
               target="_blank"
             >
               서비스 기능 테스트 자동화 도입</a>
-            <span>2026.06 - Present</span>
+            <span>2026.06 - 2026.07</span>
           </td>
 
           <td>
