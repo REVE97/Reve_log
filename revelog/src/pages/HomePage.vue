@@ -24,7 +24,7 @@
         
         <!-- KnowledgePoint 경력 기술서 파트 -->
         <tr class="career-row">
-          <td rowspan="3" class="company-cell">
+          <td rowspan="4" class="company-cell">
             <a 
               href="https://knowledgepoint.co.kr" 
               class="company-name"
@@ -102,6 +102,21 @@
               <li>상용 화상회의 서비스의 Playwright 기반 E2E 테스트 자동화 구축</li>
               <li>로그인, 화상회의 생성·참가, 채팅, API 호출 정상 여부 등 주요 사용자 시나리오 자동 검증</li>
               <li>시스템 체크 반복 업무 시간 감소 및 오류 로그 생성 · 시각화 산출물 제공</li>
+            </ul>
+          </td>
+        </tr>
+
+        <tr class="career-row">
+          <td>
+            <strong>사내 서비스 정보 관리 웹페이지 개발</strong>  
+            <span>2026.07 - Present</span>
+          </td>
+
+          <td>
+            <ul>
+              <li>Vue 3 기반으로 천재교과서·해법에듀 서비스별 운영 정보를 통합 관리하는 사내 웹페이지 개발</li>
+              <li>서비스 URL, 서버 IP·경로, 운영 환경, 브랜치, 저장소 및 배포 정보를 한 화면에서 조회할 수 있도록 구성</li>
+              <li>기존 분산된 서비스 정보를 JSON 데이터로 구조화하여 정보 조회와 유지보수 편의성 개선</li>
             </ul>
           </td>
         </tr>
