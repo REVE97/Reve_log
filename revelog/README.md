@@ -1,5 +1,34 @@
-# Vue 3 + Vite
+# REVE · 경력기술서
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Vue 3와 Vite 기반의 반응형 경력기술서입니다. 웜그레이 배경과 네이비 포인트를 사용합니다.
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+## 실행
+
+```sh
+npm install
+npm run dev
+npm run build
+```
+
+## 내용 수정
+
+`src/data/resume.js`에서 프로필, 기술 스택과 경력을 관리합니다.
+
+- `profile`: 이름, 생년월일, 직무, 연락처, 소셜 링크, 기술 스택
+- `experience`: 회사 목록. 새 회사를 추가하려면 고유한 `id`와 회사 정보를 추가합니다.
+- `projects`: 회사별 프로젝트 목록. 기간, 제목, 요약, 상세 내용과 기술 스택을 추가합니다.
+- 프로젝트의 `url`, `links`, `outcome`은 선택 항목입니다. 성과 수치는 확인된 내용만 입력합니다.
+- 회사와 프로젝트의 `id`는 전체 문서에서 중복되지 않도록 지정합니다.
+
+화면과 인쇄 문서는 같은 데이터를 사용합니다. 디자인은 `src/style.css`에서 수정합니다.
+
+## PDF 저장
+
+1. 상단 **PDF 내보내기**를 누릅니다.
+2. 브라우저 인쇄 대상에서 **PDF로 저장**을 선택합니다.
+3. A4 세로, 배율 100%를 사용하고 브라우저 머리글과 바닥글을 해제합니다.
+4. 실제 페이지 나눔을 확인한 뒤 저장합니다.
+
+내비게이션과 버튼은 인쇄에서 제외되며, 프로젝트 단위로 페이지 중간 분리를 피하도록 설정했습니다. 한 페이지보다 긴 프로젝트는 브라우저가 나누어 출력할 수 있습니다. 글꼴과 인쇄 설정에 따라 페이지 수가 달라질 수 있습니다.
+
+**미리보기**는 A4 문서 너비를 참고하는 화면이며 실제 PDF 페이지 나눔을 재현하지 않습니다. 작은 화면에서는 읽기 편하도록 화면 너비에 맞춥니다. PDF 파일을 직접 생성하는 별도 라이브러리는 사용하지 않습니다.
