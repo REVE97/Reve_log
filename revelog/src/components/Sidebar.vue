@@ -51,13 +51,21 @@ import { sideProjects } from '../data/sideProjects'
         <span>01</span>
         Profile
       </RouterLink>
-      <RouterLink :to="{ path: '/', hash: '#experience' }">
+      <RouterLink :to="{ path: '/', hash: '#skills' }">
         <span>02</span>
+        Skills
+      </RouterLink>
+      <RouterLink :to="{ path: '/', hash: '#experience' }">
+        <span>03</span>
         Experience
       </RouterLink>
-      <RouterLink :to="{ path: '/', hash: '#skills' }">
-        <span>03</span>
-        Skills
+      <RouterLink :to="{ path: '/', hash: '#education' }">
+        <span>04</span>
+        Education
+      </RouterLink>
+      <RouterLink :to="{ path: '/', hash: '#certifications' }">
+        <span>05</span>
+        Certifications
       </RouterLink>
     </nav>
     <nav

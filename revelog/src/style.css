@@ -1233,3 +1233,115 @@ h1 {
     break-inside: avoid;
   }
 }
+
+/* Resume: 기술 스택, 최종 학력 및 자격증 */
+.skills-section {
+  padding-bottom: 26px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.skills-section .profile-skills {
+  margin-top: 0;
+}
+
+.qualifications-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  margin-top: 16px;
+}
+
+.qualifications-grid > section {
+  min-width: 0;
+}
+
+.qualification-caption {
+  font-size: 10px;
+  color: var(--color-subtext);
+}
+
+.qualification-card {
+  padding: 22px;
+  background: #f8f7f4;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  break-inside: avoid;
+}
+
+.qualification-card + .qualification-card {
+  margin-top: 12px;
+}
+
+.qualification-card-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.qualification-card h3 {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.qualification-badge {
+  padding: 2px 9px;
+  border: 1px solid #d8dee5;
+  border-radius: 4px;
+  background: #edf0f4;
+  color: var(--color-secondary);
+  font-size: 10px;
+}
+
+.qualification-detail {
+  margin-top: 12px;
+  color: #606164;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.qualification-period {
+  margin-top: 6px;
+  color: var(--color-subtext);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 1050px) {
+  .qualifications-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+}
+
+@media print {
+  .skills-section {
+    padding-bottom: 4mm;
+    break-inside: avoid;
+  }
+
+  .qualifications-grid {
+    display: block;
+    margin-top: 4mm;
+  }
+
+  .qualifications-grid > section {
+    break-inside: avoid;
+  }
+
+  .qualification-card {
+    padding: 4mm;
+    background: white;
+  }
+
+  .qualification-card h3 {
+    font-size: 10pt;
+  }
+
+  .qualification-detail,
+  .qualification-period {
+    font-size: 8pt;
+  }
+}

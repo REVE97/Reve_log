@@ -5,10 +5,21 @@ export const profile = {
   email: 'zxcv9675@naver.com',
   github: 'https://github.com/REVE97',
   blog: 'https://velog.io/@zxcv9675/posts',
-  skills: ['Vue', 'React', 'JavaScript', 'TypeScript', 'Java', 'Linux', 'Pinia', 'REST API', 'Vite', 'Playwright', 'Git'],
+  skills: [
+    'Vue',
+    'React',
+    'JavaScript',
+    'TypeScript',
+    'Java',
+    'Linux',
+    'Pinia',
+    'REST API',
+    'Vite',
+    'Playwright',
+    'Git',
+  ],
 }
 
-// 회사와 프로젝트를 추가하면 웹 화면과 인쇄 문서에 함께 반영됩니다.
 export const experience = [
   {
     id: 'knowledgepoint',
@@ -73,5 +84,25 @@ export const experience = [
         skills: ['Vue 3', 'JSON'],
       },
     ],
+  },
+]
+
+export const education = [
+  {
+    id: 'seokyeong',
+    school: '서경대학교',
+    major: '컴퓨터공학과',
+    degree: '학사',
+    period: '2021.03 — 2026.02',
+    status: '졸업',
+  },
+]
+
+export const certifications = [
+  {
+    id: 'lpic-1',
+    name: 'LPIC-1',
+    issuer: 'Linux Professional Institute',
+    date: '2026.01',
   },
 ]

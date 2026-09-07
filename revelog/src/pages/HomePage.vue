@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { experience, profile } from '../data/resume'
+import { certifications, education, experience, profile } from '../data/resume'
 
 const preview = ref(false)
 const printResume = () => window.print()
@@ -104,8 +104,22 @@ const printResume = () => window.print()
             </a>
           </address>
         </div>
+      </section>
+
+      <section
+        id="skills"
+        class="skills-section"
+        aria-labelledby="skills-heading"
+      >
+        <div class="section-heading">
+          <h2
+            id="skills-heading"
+            class="section-label"
+          >
+            SKILLS_
+          </h2>
+        </div>
         <div
-          id="skills"
           class="profile-skills"
           aria-label="기술 스택"
         >
@@ -236,6 +250,62 @@ const printResume = () => window.print()
           </div>
         </section>
       </section>
+
+      <div class="qualifications-grid">
+        <section
+          id="education"
+          aria-labelledby="education-heading"
+        >
+          <div class="section-heading">
+            <h2
+              id="education-heading"
+              class="section-label"
+            >
+              EDUCATION_
+            </h2>
+            <span class="qualification-caption">최종 학력</span>
+          </div>
+          <article
+            v-for="item in education"
+            :key="item.id"
+            class="qualification-card"
+          >
+            <div class="qualification-card-header">
+              <h3>{{ item.school }}</h3>
+              <span class="qualification-badge">{{ item.status }}</span>
+            </div>
+            <p class="qualification-detail">{{ item.major }} · {{ item.degree }}</p>
+            <p class="qualification-period">{{ item.period }}</p>
+          </article>
+        </section>
+
+        <section
+          id="certifications"
+          aria-labelledby="certifications-heading"
+        >
+          <div class="section-heading">
+            <h2
+              id="certifications-heading"
+              class="section-label"
+            >
+              CERTIFICATIONS_
+            </h2>
+            <span class="qualification-caption">자격증</span>
+          </div>
+          <article
+            v-for="item in certifications"
+            :key="item.id"
+            class="qualification-card"
+          >
+            <div class="qualification-card-header">
+              <h3>{{ item.name }}</h3>
+              <span class="qualification-badge">취득</span>
+            </div>
+            <p class="qualification-detail">{{ item.issuer }}</p>
+            <p class="qualification-period">{{ item.date }}</p>
+          </article>
+        </section>
+      </div>
 
       <footer class="document-footer">
         <span>REVE / CAREER</span>
