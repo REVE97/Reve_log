@@ -20,7 +20,7 @@ export const sideProjects = [
       username: 'test',
       password: '1234',
     },
-    skills: ['React', 'JavaScript', 'Supabase', 'Vercel', 'PWA'],
+    skills: ['React', 'JavaScript', 'Supabase', 'Vercel', 'PWA', 'Microsoft Clarity'],
     screens: [
       { src: bandiaryHome, label: '활동 기록' },
       { src: bandiaryPlace, label: '장소 관리' },
@@ -82,8 +82,9 @@ export const sideProjects = [
         icon: 'deploy',
         title: '배포와 운영',
         details: [
-          'GitHub Actions 기반 CI/CD 구성', 
-          'Vercel 프론트엔드 배포 및 PWA 제공'
+          'GitHub Actions 기반 CI/CD 구성',
+          'Vercel 프론트엔드 배포 및 PWA 제공',
+          'Microsoft Clarity를 활용한 사용자 행동 분석 및 서비스 운영',
         ],
       },
     ],
