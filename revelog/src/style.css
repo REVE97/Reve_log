@@ -1127,7 +1127,7 @@ h1 {
   word-break: keep-all;
   overflow-wrap: anywhere;
 }
-.case-study .document-footer {
+.sideproject-document > .document-footer {
   margin-top: 0;
   border-top: 0;
 }

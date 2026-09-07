@@ -55,6 +55,11 @@ const printProjects = () => window.print()
         :project="project"
         :index="index"
       />
+
+      <footer class="document-footer">
+        <span>REVE / SIDE PROJECT</span>
+        <span>곽효재 · 포트폴리오</span>
+      </footer>
     </div>
   </div>
 </template>

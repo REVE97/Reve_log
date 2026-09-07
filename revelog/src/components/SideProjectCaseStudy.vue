@@ -227,10 +227,5 @@ defineProps({
         </div>
       </div>
     </section>
-
-    <footer class="document-footer">
-      <span>REVE / SIDE PROJECT</span>
-      <span>곽효재 · 포트폴리오</span>
-    </footer>
   </article>
 </template>
