@@ -83,9 +83,7 @@ import { sideProjects } from '../data/sideProjects'
       </RouterLink>
     </nav>
     <p class="sidebar-caption">
-      A record of
-      <br />
-      work & growth.
+      Update / 2026.09.07
     </p>
   </aside>
 </template>
