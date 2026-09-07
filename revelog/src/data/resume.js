@@ -5,7 +5,7 @@ export const profile = {
   email: 'zxcv9675@naver.com',
   github: 'https://github.com/REVE97',
   blog: 'https://velog.io/@zxcv9675/posts',
-  skills: ['Vue', 'React', 'JavaScript', 'TypeScript', 'Pinia', 'Vite', 'Playwright'],
+  skills: ['Vue', 'React', 'JavaScript', 'TypeScript', 'Java', 'Linux', 'Pinia', 'REST API', 'Vite', 'Playwright', 'Git'],
 }
 
 // 회사와 프로젝트를 추가하면 웹 화면과 인쇄 문서에 함께 반영됩니다.
@@ -15,7 +15,7 @@ export const experience = [
     name: 'KnowledgePoint',
     url: 'https://knowledgepoint.co.kr',
     team: 'Solution Development Team',
-    period: '2026 — Present',
+    period: '2026.01 — Present',
     projects: [
       {
         id: 'ota',
