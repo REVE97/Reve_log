@@ -3,6 +3,7 @@ import bandiaryPlace from '../assets/projects/bandiary-place.jpeg'
 import bandiarySchedule from '../assets/projects/bandiary-schedule.jpeg'
 import bandiaryMusic from '../assets/projects/bandiary-musicsheet.jpeg'
 import bandiaryNotice from '../assets/projects/bandiary-notice.jpeg'
+import bandiaryQrCode from '../assets/projects/bandiary-qrcode.png'
 import moaShowcase from '../assets/projects/moa-showcase.png'
 
 // 동일한 구조의 프로젝트를 추가하면 본문과 사이드바 목차에 함께 반영됩니다.
@@ -13,6 +14,12 @@ export const sideProjects = [
     subtitle: '밴드 활동을 기록하고 관리하는 올인원 모바일 다이어리',
     period: '2026.06 — Update',
     github: 'https://github.com/REVE97/Band_diary',
+    demo: {
+      url: 'https://band-diary.vercel.app',
+      qrCode: bandiaryQrCode,
+      username: 'test',
+      password: '1234',
+    },
     skills: ['React', 'JavaScript', 'Supabase', 'Vercel', 'PWA'],
     screens: [
       { src: bandiaryHome, label: '활동 기록' },
@@ -25,6 +32,8 @@ export const sideProjects = [
       '밴드 활동에 필요한 기록과 정보를 한곳에 모았습니다.',
       '사진 · 영상 · 오디오부터 장소, 악보, 일정까지 연결하는 모바일 다이어리 서비스입니다.',
     ],
+    overviewHighlight:
+      '현재 실제 사용자를 대상으로 베타 서비스를 운영하며, 사용자 피드백을 수집하고 개선 사항을 반영하고 있습니다.',
     features: [
       {
         icon: 'media',
@@ -72,7 +81,10 @@ export const sideProjects = [
       {
         icon: 'deploy',
         title: '배포와 운영',
-        details: ['GitHub Actions 기반 CI/CD 구성', 'Vercel 프론트엔드 배포 및 PWA 제공'],
+        details: [
+          'GitHub Actions 기반 CI/CD 구성', 
+          'Vercel 프론트엔드 배포 및 PWA 제공'
+        ],
       },
     ],
   },

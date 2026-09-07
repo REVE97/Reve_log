@@ -105,6 +105,61 @@ defineProps({
         >
           {{ paragraph }}
         </p>
+        <p
+          v-if="project.overviewHighlight"
+          class="case-overview-highlight"
+        >
+          {{ project.overviewHighlight }}
+        </p>
+      </div>
+    </section>
+
+    <section
+      v-if="project.demo"
+      class="case-demo"
+      :aria-labelledby="`${project.id}-demo`"
+    >
+      <a
+        :href="project.demo.url"
+        class="case-demo-qr"
+        target="_blank"
+        rel="noopener noreferrer"
+        :aria-label="`${project.name} 체험 사이트 열기 (새 탭)`"
+      >
+        <img
+          :src="project.demo.qrCode"
+          :alt="`${project.name} 체험 사이트 QR 코드`"
+          width="450"
+          height="450"
+        />
+      </a>
+
+      <div class="case-demo-content">
+        <h3 :id="`${project.id}-demo`">테스트 계정</h3>
+
+        <dl class="case-demo-credentials">
+          <div>
+            <dt>ID</dt>
+            <dd>{{ project.demo.username }}</dd>
+          </div>
+          <div>
+            <dt>PW</dt>
+            <dd>{{ project.demo.password }}</dd>
+          </div>
+        </dl>
+
+        <a
+          :href="project.demo.url"
+          class="case-demo-link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {{ project.demo.url.replace('https://', '') }}
+          <span
+            class="icon external-arrow"
+            aria-hidden="true"
+          ></span>
+        </a>
       </div>
     </section>
 
