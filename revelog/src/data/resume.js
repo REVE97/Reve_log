@@ -13,6 +13,7 @@ export const profile = {
     'Java',
     'Linux',
     'Pinia',
+    'Zustand',
     'REST API',
     'Vite',
     'Playwright',
