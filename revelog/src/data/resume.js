@@ -43,6 +43,18 @@ export const experience = [
         skills: ['Vue 3', 'Pinia', 'REST API'],
       },
       {
+        id: 'system-check',
+        period: '2026.01 - Present',
+        title: '상용 서비스 운영 모니터링 및 시스템 체크',
+        summary: '상용 서비스의 서버 · 애플리케이션 상태 모니터링 및 정기 시스템 점검 수행',
+        details: [
+          '해법에듀 · 스미세이케미칼 등 상용 서비스 및 솔루션의 운영 상태를 정기적으로 점검하고 일일 · 월간 운영 리포트 작성',
+          'Linux 서버의 CPU · Memory · Disk 사용량, 프로세스 상태 및 애플리케이션 로그를 확인하여 시스템 이상 징후와 장애 발생 가능 요소 사전 점검',
+          'AWS CloudWatch 기반 서버 · 애플리케이션 모니터링 지표를 확인하고 시스템 상태 및 이상 징후를 시각화하여 운영 현황 관리'
+        ],
+        skills: ['Linux', 'AWS CloudWatch']
+      },
+      {
         id: 'migration',
         period: '2026.04 — 06',
         title: '교육 화상 서비스 마이그레이션',
