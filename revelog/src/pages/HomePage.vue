@@ -1,11 +1,3 @@
-<script setup>
-import { ref } from 'vue'
-import { certifications, education, experience, profile } from '../data/resume'
-
-const preview = ref(false)
-const printResume = () => window.print()
-</script>
-
 <template>
   <div
     class="resume-workspace"
@@ -314,3 +306,11 @@ const printResume = () => window.print()
     </article>
   </div>
 </template>
+
+<script setup>
+import { ref } from 'vue'
+import { certifications, education, experience, profile } from '../data/resume'
+
+const preview = ref(false)
+const printResume = () => window.print()
+</script>

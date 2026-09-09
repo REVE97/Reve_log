@@ -1,12 +1,3 @@
-<script setup>
-import { ref } from 'vue'
-import SideProjectCaseStudy from '../components/SideProjectCaseStudy.vue'
-import { sideProjects } from '../data/sideProjects'
-
-const preview = ref(false)
-const printProjects = () => window.print()
-</script>
-
 <template>
   <div
     class="resume-workspace sideproject-workspace"
@@ -63,3 +54,12 @@ const printProjects = () => window.print()
     </div>
   </div>
 </template>
+
+<script setup>
+import { ref } from 'vue'
+import SideProjectCaseStudy from '../components/SideProjectCaseStudy.vue'
+import { sideProjects } from '../data/sideProjects'
+
+const preview = ref(false)
+const printProjects = () => window.print()
+</script>

@@ -1,28 +1,3 @@
-<script setup>
-import { computed, watch } from 'vue'
-import { useRoute } from 'vue-router'
-import { collections, posts, postAssets } from '../data/posts'
-import { renderPost } from '../lib/markdown'
-
-const route = useRoute()
-const collection = computed(() => route.meta.collection)
-const config = computed(() => collections[collection.value])
-const post = computed(() =>
-  posts.find(entry => entry.collection === collection.value && entry.slug === route.params.slug),
-)
-const rendered = computed(() =>
-  post.value ? renderPost(post.value.body, post.value.folder, postAssets) : { html: '', toc: [] },
-)
-
-watch(
-  post,
-  value => {
-    document.title = `${value?.title || '기록을 찾을 수 없습니다'} · REVE`
-  },
-  { immediate: true },
-)
-</script>
-
 <template>
   <div class="resume-workspace journal-workspace">
     <header class="document-toolbar">
@@ -56,7 +31,6 @@ watch(
         <h1>{{ post.title }}</h1>
         <p class="journal-description">{{ post.summary }}</p>
         <div class="journal-post-byline">
-          <span>곽효재</span>
           <time
             v-if="post.date"
             :datetime="post.date"
@@ -122,3 +96,28 @@ watch(
     </div>
   </div>
 </template>
+
+<script setup>
+import { computed, watch } from 'vue'
+import { useRoute } from 'vue-router'
+import { collections, posts, postAssets } from '../data/posts'
+import { renderPost } from '../lib/markdown'
+
+const route = useRoute()
+const collection = computed(() => route.meta.collection)
+const config = computed(() => collections[collection.value])
+const post = computed(() =>
+  posts.find(entry => entry.collection === collection.value && entry.slug === route.params.slug),
+)
+const rendered = computed(() =>
+  post.value ? renderPost(post.value.body, post.value.folder, postAssets) : { html: '', toc: [] },
+)
+
+watch(
+  post,
+  value => {
+    document.title = `${value?.title || '기록을 찾을 수 없습니다'} · REVE`
+  },
+  { immediate: true },
+)
+</script>

@@ -1,8 +1,3 @@
-<script setup>
-import logo from '../assets/reve_logo.svg'
-import { sideProjects } from '../data/sideProjects'
-</script>
-
 <template>
   <aside class="sidebar">
     <RouterLink
@@ -107,3 +102,8 @@ import { sideProjects } from '../data/sideProjects'
     <p class="sidebar-caption">Update / 2026.09.07</p>
   </aside>
 </template>
+
+<script setup>
+import logo from '../assets/reve_logo.svg'
+import { sideProjects } from '../data/sideProjects'
+</script>

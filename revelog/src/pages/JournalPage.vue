@@ -1,51 +1,3 @@
-<script setup>
-import { computed, ref, watch } from 'vue'
-import { useRoute } from 'vue-router'
-import { collections, posts } from '../data/posts'
-
-const route = useRoute()
-const collection = computed(() => route.meta.collection)
-const config = computed(() => collections[collection.value])
-const query = ref('')
-const category = ref('전체')
-const project = ref('전체')
-const entries = computed(() => posts.filter(post => post.collection === collection.value))
-const filters = computed(() => [
-  ...new Set([...config.value.filters, ...entries.value.map(post => post.category)]),
-])
-const projects = computed(() => [
-  ...new Set(entries.value.map(post => post.project).filter(Boolean)),
-])
-const filtered = computed(() => {
-  const term = query.value.trim().toLocaleLowerCase()
-  return entries.value.filter(
-    post =>
-      (category.value === '전체' || post.category === category.value) &&
-      (project.value === '전체' || post.project === project.value) &&
-      (!term ||
-        [post.title, post.summary, post.body, ...post.tags]
-          .join(' ')
-          .toLocaleLowerCase()
-          .includes(term)),
-  )
-})
-
-function resetFilters() {
-  query.value = ''
-  category.value = '전체'
-  project.value = '전체'
-}
-
-watch(collection, resetFilters)
-watch(
-  config,
-  value => {
-    document.title = `${value.title} · REVE`
-  },
-  { immediate: true },
-)
-</script>
-
 <template>
   <div class="resume-workspace journal-workspace">
     <header class="document-toolbar">
@@ -189,18 +141,10 @@ watch(
         v-else
         class="journal-empty"
       >
-        <span aria-hidden="true">⌕</span>
         <h2>
           {{ entries.length ? '조건에 맞는 기록이 없습니다.' : '아직 등록된 기록이 없습니다.' }}
         </h2>
         <p>다른 검색어나 분류로 찾아보세요.</p>
-        <button
-          v-if="entries.length"
-          class="button button-secondary"
-          @click="resetFilters"
-        >
-          필터 초기화
-        </button>
       </div>
       <footer class="document-footer">
         <span>REVE / {{ config.title.toUpperCase() }}</span>
@@ -209,3 +153,51 @@ watch(
     </div>
   </div>
 </template>
+
+<script setup>
+import { computed, ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
+import { collections, posts } from '../data/posts'
+
+const route = useRoute()
+const collection = computed(() => route.meta.collection)
+const config = computed(() => collections[collection.value])
+const query = ref('')
+const category = ref('전체')
+const project = ref('전체')
+const entries = computed(() => posts.filter(post => post.collection === collection.value))
+const filters = computed(() => [
+  ...new Set([...config.value.filters, ...entries.value.map(post => post.category)]),
+])
+const projects = computed(() => [
+  ...new Set(entries.value.map(post => post.project).filter(Boolean)),
+])
+const filtered = computed(() => {
+  const term = query.value.trim().toLocaleLowerCase()
+  return entries.value.filter(
+    post =>
+      (category.value === '전체' || post.category === category.value) &&
+      (project.value === '전체' || post.project === project.value) &&
+      (!term ||
+        [post.title, post.summary, post.body, ...post.tags]
+          .join(' ')
+          .toLocaleLowerCase()
+          .includes(term)),
+  )
+})
+
+function resetFilters() {
+  query.value = ''
+  category.value = '전체'
+  project.value = '전체'
+}
+
+watch(collection, resetFilters)
+watch(
+  config,
+  value => {
+    document.title = `${value.title} · REVE`
+  },
+  { immediate: true },
+)
+</script>

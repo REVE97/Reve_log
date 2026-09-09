@@ -1,10 +1,3 @@
-<script setup>
-defineProps({
-  project: { type: Object, required: true },
-  index: { type: Number, required: true },
-})
-</script>
-
 <template>
   <article
     :id="project.id"
@@ -229,3 +222,10 @@ defineProps({
     </section>
   </article>
 </template>
+
+<script setup>
+defineProps({
+  project: { type: Object, required: true },
+  index: { type: Number, required: true },
+})
+</script>
