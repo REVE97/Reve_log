@@ -99,7 +99,7 @@
         {{ project.name }}
       </RouterLink>
     </nav>
-    <p class="sidebar-caption">Update / 2026.09.07</p>
+    <p class="sidebar-caption">Update / 2026.09.09</p>
   </aside>
 </template>
 
