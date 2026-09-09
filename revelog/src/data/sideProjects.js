@@ -90,6 +90,81 @@ export const sideProjects = [
     ],
   },
   {
+    id: 'revelog',
+    name: 'reve.log',
+    subtitle: '경력과 프로젝트, 배움의 과정을 연결하는 개인 포트폴리오 · 개발 기록 웹사이트',
+    period: '2026.06 — Update',
+    github: 'https://github.com/REVE97/Reve_log',
+    skills: ['Vue 3', 'JavaScript', 'Vue Router', 'Vite'],
+    overview: [
+      '경력기술서와 사이드 프로젝트 포트폴리오를 한곳에서 관리합니다.',
+      'TIL, 트러블슈팅, 개발일지를 Markdown과 이미지로 기록하여 구현 결과와 학습 과정을 함께 보여줍니다.',
+    ],
+    overviewHighlight:
+      '글별 폴더에 Markdown과 이미지를 추가하면 목록과 상세 페이지에 자동 반영되어, 화면 코드를 수정하지 않고 개발 기록을 축적할 수 있습니다.',
+    features: [
+      {
+        icon: 'resume',
+        title: '경력기술서',
+        description: '프로필, 기술 스택, 실무 프로젝트, 학력과 자격증을 구조화하여 제공합니다.',
+      },
+      {
+        icon: 'sideproject',
+        title: '프로젝트 포트폴리오',
+        description: '프로젝트별 소개, 주요 기능, 구현 내용과 서비스 화면을 공통 형식으로 정리합니다.',
+      },
+      {
+        icon: 'engineering',
+        title: 'Engineering',
+        description: 'TIL과 트러블슈팅을 기록하고, 제목 · 본문 · 태그 검색과 유형 필터로 탐색합니다.',
+      },
+      {
+        icon: 'product-log',
+        title: 'Product Log',
+        description: '개발일지와 회고를 날짜별 타임라인으로 제공하고 프로젝트별로 모아 볼 수 있습니다.',
+      },
+      {
+        icon: 'download',
+        title: '문서 미리보기 · PDF 저장',
+        description: '경력기술서와 포트폴리오의 A4 너비를 미리 보고 브라우저 인쇄로 PDF를 저장합니다.',
+      },
+    ],
+    implementation: [
+      {
+        icon: 'data',
+        title: '데이터 중심 화면 구성',
+        details: [
+          '경력 · 프로젝트 데이터를 화면 컴포넌트와 분리하고 공통 컴포넌트로 본문과 목차 구성',
+          'Vite의 import.meta.glob으로 글별 Markdown과 이미지를 자동 수집하고 날짜순 목록 생성',
+        ],
+      },
+      {
+        icon: 'notice',
+        title: 'Markdown 콘텐츠 처리',
+        details: [
+          'yaml로 제목 · 날짜 · 분류 등 메타데이터를 읽고 markdown-it으로 본문을 HTML로 변환',
+          'highlight.js 코드 문법 강조, 반복 소제목의 고유 목차 생성, 글 폴더 기준 이미지 경로 처리',
+        ],
+      },
+      {
+        icon: 'engineering',
+        title: '라우팅과 기록 탐색',
+        details: [
+          'Vue Router로 기록 목록과 글별 상세 경로를 구성하고 기록 페이지를 동적 import로 분리',
+          '공통 목록 · 상세 컴포넌트와 computed 기반 검색 · 유형 · 프로젝트 필터 구현',
+        ],
+      },
+      {
+        icon: 'media',
+        title: '반응형 · 인쇄 스타일',
+        details: [
+          'style.css에서 모바일 · 데스크톱 레이아웃과 SVG 마스크 아이콘 스타일을 통합 관리',
+          '같은 경력 · 프로젝트 데이터에 화면용 스타일과 인쇄용 CSS를 적용하고 window.print로 PDF 저장 지원',
+        ],
+      },
+    ],
+  },
+  {
     id: 'moa',
     name: 'MOA',
     subtitle: '예약부터 정산, 기록까지 연결하는 전자지갑 기반 올인원 여행 서비스',
