@@ -79,21 +79,6 @@
                 aria-hidden="true"
               ></span>
             </a>
-            <a
-              :href="profile.blog"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                src="../assets/velog_clear.svg"
-                alt=""
-              />
-              velog.io/@zxcv9675
-              <span
-                class="icon external-arrow"
-                aria-hidden="true"
-              ></span>
-            </a>
           </address>
         </div>
       </section>

@@ -1,23 +1,16 @@
 ---
-title: "OTA · SUMS / VSOC 개발일지"
-date: 2026-04-02
-category: 개발일지
-project: OTA · SUMS / VSOC
-tags: [Vue, REST API, Pinia, 협업]
-summary: "API 연동부터 상태 관리, 동적 라우팅과 최종 테스트까지. 2026년 1월부터 4월까지의 프론트엔드 개발 기록입니다."
-cover: ./development-flow.svg
-sample: true
+title: "[개발일지] OTA - SUMS/VSOC" # 포스팅 제목
+date: 2026-01-28 # 작성 일자
+category: 개발일지 # 카테고리 
+tags: [Vue, JavaScript, Pinia, REST API] # 태그 
+summary: "KT DS / 타타대우모빌리티 협업 차량 관리 플랫폼 프론트엔드 초기 개발 및 고도화 개발일지" # 요약
+cover: ./ota-sums-vsoc.png # 썸네일 이미지
+sample: false # 테스트 글인지 유무
 ---
-# 🖥️ OTA - SUMS / VSOC 개발일지
 
 > **개발기간** : _2026.01.20 ~ 2026.04.02_  
 > **주요 개발 내용** : **OTA - SUMS/VSOC 차량 관리 플랫폼 개발 및 고도화** (KT 모빌리티플랫폼팀 · 타타대우모빌리티 협업)  
 > **역할** : **플랫폼 프론트엔드 개발 및 고도화(기능 연동/UI,UX 개선/트러블슈팅)**
-
-
-![API 연동, 상태 관리, 테스트로 이어지는 개발 흐름을 요약한 테스트 도식](./development-flow.svg)
-
-*Markdown·이미지 표시를 확인하기 위해 첨부 개발일지에 추가한 테스트 도식입니다. 실제 서비스 화면은 아닙니다.*
 
 ---
 
