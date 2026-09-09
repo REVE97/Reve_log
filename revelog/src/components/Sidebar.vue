@@ -41,6 +41,28 @@ import { sideProjects } from '../data/sideProjects'
         ></span>
         Side Project
       </RouterLink>
+      <RouterLink
+        to="/engineering"
+        class="nav-item"
+        :class="{ 'router-link-active': $route.meta.collection === 'engineering' }"
+      >
+        <span
+          class="icon icon-engineering"
+          aria-hidden="true"
+        ></span>
+        Engineering
+      </RouterLink>
+      <RouterLink
+        to="/product-log"
+        class="nav-item"
+        :class="{ 'router-link-active': $route.meta.collection === 'product-log' }"
+      >
+        <span
+          class="icon icon-product-log"
+          aria-hidden="true"
+        ></span>
+        Product Log
+      </RouterLink>
     </nav>
     <nav
       v-if="$route.path === '/'"
@@ -82,8 +104,6 @@ import { sideProjects } from '../data/sideProjects'
         {{ project.name }}
       </RouterLink>
     </nav>
-    <p class="sidebar-caption">
-      Update / 2026.09.07
-    </p>
+    <p class="sidebar-caption">Update / 2026.09.07</p>
   </aside>
 </template>
