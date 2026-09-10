@@ -4,7 +4,7 @@ date: 2026-05-13 # 작성 일자
 category: TIL # 카테고리 
 tags: [JavaScript, TypeScript] # 태그 
 summary: "JavaScript, TypeScript 관련 학습 TIL" # 요약
-cover: ./JS TIL.png # 썸네일 이미지
+cover: ./js,ts.png # 썸네일 이미지
 ---
 
 ## 📘 JavaScript
