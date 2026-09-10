@@ -2720,3 +2720,12 @@ h1 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
+
+.markdown-toolbar .toolbar-actions {
+  flex-wrap: wrap;
+}
+
+.markdown-toolbar button:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}

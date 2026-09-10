@@ -19,6 +19,22 @@
         </button>
         <button
           type="button"
+          class="button button-secondary"
+          :disabled="importing"
+          @click="fileInput.click()"
+        >
+          {{ importing ? '불러오는 중…' : '불러오기' }}
+        </button>
+        <input
+          ref="fileInput"
+          type="file"
+          accept=".md,.markdown"
+          aria-label="Markdown 파일 불러오기"
+          hidden
+          @change="loadMarkdown"
+        />
+        <button
+          type="button"
           class="button button-primary"
           @click="downloadMarkdown"
         >
@@ -35,9 +51,7 @@
       <header class="markdown-heading">
         <p class="journal-eyebrow">LABS</p>
         <h1>Markdown 만들기</h1>
-        <p class="journal-description">
-          글 정보와 본문을 하나의 Markdown 파일로 정리합니다.
-        </p>
+        <p class="journal-description">글 정보와 본문을 하나의 Markdown 파일로 정리합니다.</p>
       </header>
 
       <p
@@ -160,9 +174,7 @@
                 :placeholder="bodyPlaceholder"
                 aria-describedby="body-help"
               ></textarea>
-              <small id="body-help">
-                본문은 ## 소제목부터 작성하세요.
-              </small>
+              <small id="body-help">본문은 ## 소제목부터 작성하세요.</small>
             </label>
           </section>
         </form>
@@ -259,7 +271,7 @@
 
 <script setup>
 import { computed, reactive, ref, watch } from 'vue'
-import { createMarkdown } from '../lib/createMarkdown'
+import { categoryOptions, createMarkdown, importMarkdown } from '../lib/createMarkdown'
 import { parsePost, renderPost } from '../lib/markdown'
 
 const now = new Date()
@@ -280,12 +292,10 @@ const form = reactive({
 const preview = ref(false)
 const error = ref('')
 const notice = ref('')
+const fileInput = ref(null)
+const importing = ref(false)
 const bodyPlaceholder =
   '## Intro\n\n글을 시작하게 된 계기를 작성해 주세요.\n\n## 주요 내용\n\n- 구현 내용\n- 배운 점'
-const categoryOptions = {
-  Engineering: ['TIL', 'Trouble Shooting', '기술 분석'],
-  'Product Log': ['개발일지', '사용자 피드백', '회고'],
-}
 const categories = computed(() => categoryOptions[collection.value])
 const markdown = computed(() => createMarkdown(form))
 const previewResult = computed(() => {
@@ -301,13 +311,44 @@ const previewResult = computed(() => {
   }
 })
 
-watch(collection, () => {
-  form.category = categories.value[0]
-})
-watch(form, () => {
+watch(
+  collection,
+  () => {
+    form.category = categories.value[0]
+  },
+  { flush: 'sync' },
+)
+watch(
+  form,
+  () => {
+    error.value = ''
+    notice.value = ''
+  },
+  { flush: 'sync' },
+)
+
+async function loadMarkdown(event) {
+  const file = event.target.files?.[0]
+  if (!file) return
   error.value = ''
   notice.value = ''
-})
+  importing.value = true
+  try {
+    if (!/\.(md|markdown)$/i.test(file.name)) {
+      throw new Error('.md 또는 .markdown 파일을 선택해 주세요.')
+    }
+    const imported = importMarkdown(await file.text())
+    collection.value = imported.collection
+    Object.assign(form, imported.form)
+    preview.value = false
+    notice.value = `${file.name} 파일을 불러왔습니다. cover는 제외하고 폼에 반영했습니다.`
+  } catch (cause) {
+    error.value = `파일을 불러오지 못했습니다. ${cause.message}`
+  } finally {
+    importing.value = false
+    event.target.value = ''
+  }
+}
 
 function downloadMarkdown() {
   error.value = ''
