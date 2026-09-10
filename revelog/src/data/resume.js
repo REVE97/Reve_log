@@ -76,7 +76,7 @@ export const experience = [
         id: 'testing',
         period: '2026.06 — 07',
         title: '서비스 기능 테스트 자동화',
-        url: 'https://velog.io/@zxcv9675/라이브러리-Playwright',
+        url: 'https://reve-log.vercel.app/engineering/lib-playwright',
         summary: '상용 화상회의 서비스의 Playwright 기반 E2E 테스트 구축',
         details: [
           '로그인, 화상회의 생성 · 참가, 채팅, API 호출 정상 여부 등 주요 사용자 시나리오 자동 검증',
