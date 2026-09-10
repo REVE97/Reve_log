@@ -58,6 +58,34 @@
         ></span>
         Product Log
       </RouterLink>
+      <div class="labs-nav-group">
+        <button
+          type="button"
+          class="nav-item labs-nav-toggle"
+          :class="{ 'router-link-active': isLabs }"
+          :aria-expanded="labsOpen"
+          aria-controls="labs-subnav"
+          @click="labsOpen = !labsOpen"
+        >
+          <span
+            class="icon icon-labs"
+            aria-hidden="true"
+          ></span>
+          Labs
+          <span
+            class="labs-chevron"
+            :class="{ 'is-open': labsOpen }"
+            aria-hidden="true"
+          ></span>
+        </button>
+        <div
+          v-show="labsOpen"
+          id="labs-subnav"
+          class="labs-subnav"
+        >
+          <RouterLink to="/labs/createmarkdown">Markdown 만들기</RouterLink>
+        </div>
+      </div>
     </nav>
     <nav
       v-if="$route.path === '/'"
@@ -99,11 +127,23 @@
         {{ project.name }}
       </RouterLink>
     </nav>
-    <p class="sidebar-caption">Update / 2026.09.09</p>
+    <p class="sidebar-caption">Update / 2026.09.10</p>
   </aside>
 </template>
 
 <script setup>
+import { computed, ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 import logo from '../assets/reve_logo.svg'
 import { sideProjects } from '../data/sideProjects'
+
+const route = useRoute()
+const isLabs = computed(() => route.path.startsWith('/labs/'))
+const labsOpen = ref(isLabs.value)
+watch(
+  () => route.path,
+  () => {
+    if (isLabs.value) labsOpen.value = true
+  },
+)
 </script>

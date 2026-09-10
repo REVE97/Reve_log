@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import HomePage from '../pages/HomePage.vue'
 import SideProjectPage from '../pages/SideProjectPage.vue'
+import CreateMarkdownPage from '../pages/CreateMarkdownPage.vue'
 
 const routes = [
   {
@@ -13,6 +14,12 @@ const routes = [
     path: '/sideproject',
     name: 'sideproject',
     component: SideProjectPage,
+  },
+  {
+    path: '/labs/createmarkdown',
+    name: 'create-markdown',
+    component: CreateMarkdownPage,
+    meta: { title: 'Markdown 만들기 · REVE' },
   },
   ...['engineering', 'product-log'].flatMap(collection => [
     {
@@ -42,7 +49,8 @@ const router = createRouter({
 
 router.afterEach(to => {
   if (!to.meta.collection)
-    document.title = to.name === 'sideproject' ? 'Side Project · REVE' : 'reve.log'
+    document.title =
+      to.meta.title || (to.name === 'sideproject' ? 'Side Project · REVE' : 'reve.log')
 })
 
 export default router

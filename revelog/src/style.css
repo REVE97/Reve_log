@@ -2363,3 +2363,360 @@ h1 {
     color: inherit;
   }
 }
+
+/* Labs: 하위 메뉴와 Markdown 작성 도구 */
+.icon-labs {
+  --icon-source: url('./assets/icon-labs.svg');
+}
+
+.labs-nav-toggle {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+}
+
+.labs-chevron {
+  width: 6px;
+  height: 6px;
+  margin-left: auto;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: rotate(45deg);
+}
+
+.labs-chevron.is-open {
+  transform: rotate(225deg);
+}
+
+.labs-subnav {
+  margin: 8px 0 4px 25px;
+  padding-left: 16px;
+  border-left: 1px solid #cdd2d8;
+}
+
+.labs-subnav a {
+  display: block;
+  padding: 10px 0;
+  color: #68717c;
+  font-size: 12px;
+}
+
+.labs-subnav a:hover,
+.labs-subnav a.router-link-active {
+  color: var(--color-secondary);
+  font-weight: 600;
+}
+
+.markdown-workspace {
+  min-height: calc(100vh - 56px);
+}
+
+.markdown-heading {
+  padding-bottom: 30px;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 30px;
+}
+
+.markdown-heading h1 {
+  margin: 12px 0;
+  font-size: clamp(28px, 3.2vw, 38px);
+  line-height: 1.4;
+  letter-spacing: -0.045em;
+  font-weight: 600;
+}
+
+.markdown-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 250px;
+  align-items: start;
+  gap: 36px;
+}
+
+.markdown-form,
+.markdown-preview {
+  min-width: 0;
+}
+
+.markdown-section + .markdown-section {
+  margin-top: 34px;
+  padding-top: 28px;
+  border-top: 1px solid var(--color-border);
+}
+
+.markdown-section-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.markdown-section-heading h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #304157;
+}
+
+.markdown-section-heading h2 span {
+  margin-right: 10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #7b8795;
+  font-variant-numeric: tabular-nums;
+}
+
+.markdown-section-heading > span {
+  color: #747b84;
+  font-size: 12px;
+}
+
+.markdown-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px 18px;
+}
+
+.markdown-field {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  min-width: 0;
+  color: #404b59;
+  font-size: 14px;
+}
+
+.markdown-field.is-full {
+  grid-column: 1 / -1;
+}
+
+.markdown-field > span {
+  font-weight: 500;
+}
+
+.markdown-field small {
+  color: #707982;
+  font-size: 12px;
+  line-height: 1.8;
+  font-weight: 400;
+}
+
+.markdown-field > span small {
+  margin-left: 5px;
+}
+
+.markdown-field input,
+.markdown-field select,
+.markdown-field textarea {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 11px 13px;
+  border: 1px solid #d9dde2;
+  border-radius: 6px;
+  background: #fcfcfb;
+  color: #303740;
+  font: inherit;
+  line-height: 1.6;
+}
+
+.markdown-field textarea {
+  resize: vertical;
+}
+
+.markdown-field input::placeholder,
+.markdown-field textarea::placeholder {
+  color: #899098;
+}
+
+.markdown-field input:focus-visible,
+.markdown-field select:focus-visible,
+.markdown-field textarea:focus-visible {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 2px;
+  background: white;
+}
+
+.markdown-field .markdown-body-input {
+  min-height: 400px;
+  padding: 20px;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 14px;
+  line-height: 1.9;
+  tab-size: 2;
+}
+
+.markdown-body-label {
+  color: #667282;
+  font-size: 13px;
+}
+
+.markdown-guide {
+  position: sticky;
+  top: 28px;
+  padding: 24px;
+  border: 1px solid #e2e1dc;
+  border-radius: 8px;
+  background: #f8f7f4;
+}
+
+.markdown-file-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 0;
+  margin: 16px 0;
+  border-top: 1px solid #dedfdc;
+  border-bottom: 1px solid #dedfdc;
+  color: var(--color-secondary);
+}
+
+.markdown-file-card strong {
+  display: block;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 14px;
+}
+
+.markdown-file-card small {
+  display: block;
+  margin-top: 4px;
+  color: #747b84;
+  font-size: 11px;
+}
+
+.markdown-guide ol {
+  padding-left: 18px;
+  color: #626c77;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.markdown-guide li + li {
+  margin-top: 9px;
+}
+
+.markdown-feedback {
+  margin-bottom: 24px;
+  padding: 12px 16px;
+  border: 1px solid #d7dee7;
+  border-radius: 6px;
+  color: #3e5066;
+  background: #f1f4f7;
+  font-size: 14px;
+}
+
+.markdown-feedback.is-error {
+  border-color: #e6ccc6;
+  color: #88483d;
+  background: #fbf5f3;
+}
+
+.markdown-preview .journal-prose {
+  margin-top: 30px;
+}
+
+.markdown-preview-toc {
+  padding: 16px 20px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: #fafaf9;
+  margin-top: 24px;
+  font-size: 13px;
+  color: #566578;
+}
+
+.markdown-preview-toc summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.markdown-preview-toc nav {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-top: 12px;
+}
+
+.markdown-preview-empty {
+  padding: 40px 0;
+  color: #727c87;
+  font-size: 15px;
+}
+
+@media (max-width: 1150px) {
+  .markdown-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 30px;
+  }
+
+  .markdown-guide {
+    position: static;
+  }
+}
+
+@media (max-width: 760px) {
+  .sidebar-nav {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .labs-nav-group {
+    position: relative;
+  }
+
+  .labs-nav-toggle {
+    height: 100%;
+    position: relative;
+  }
+
+  .labs-chevron {
+    position: absolute;
+    top: 13px;
+    right: 8px;
+  }
+
+  .labs-subnav {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    z-index: 10;
+    width: 185px;
+    margin: 0;
+    padding: 6px 16px;
+    border: 1px solid #d6dae0;
+    border-radius: 6px;
+    background: white;
+    box-shadow: 0 6px 18px #27364a12;
+  }
+
+  .markdown-toolbar {
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .markdown-toolbar .toolbar-actions {
+    margin-left: auto;
+  }
+
+  .markdown-fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .markdown-field input,
+  .markdown-field select,
+  .markdown-field textarea {
+    font-size: 16px;
+  }
+
+  .markdown-field .markdown-body-input {
+    font-size: 14px;
+    padding: 14px;
+  }
+}
+
+@media (max-width: 420px) {
+  .sidebar-nav {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
