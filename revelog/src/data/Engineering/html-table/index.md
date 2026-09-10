@@ -5,7 +5,6 @@ category: TIL # 카테고리
 tags: [Vue, Html, JavaScript] # 태그 
 summary: "Vue 프레임워크에서 Table 레이아웃 테스트 예시" # 요약
 cover: ./table.png # 썸네일 이미지
-sample: false # 테스트 글인지 유무
 ---
 
 ## Table

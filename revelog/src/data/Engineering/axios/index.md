@@ -4,7 +4,6 @@ date: 2026-01-26 # 작성 일자
 category: TIL # 카테고리 
 tags: [JavaScript, Axios] # 태그 
 summary: "Javascript로 HTTP 요청을 통해 REST API를 사용하는 예시" # 요약
-sample: false # 테스트 글인지 유무
 ---
 
 >JavaScript 에서 **HTTP 요청**을 보내기 위한 라이브러리

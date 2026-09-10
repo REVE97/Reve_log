@@ -4,7 +4,6 @@ date: 2026-06-13 # 작성 일자
 category: 개발일지 # 카테고리 
 tags: [Vue, JavaScript] # 태그 
 summary: "개인 경력기술서 · 포트폴리오 · 개발 기록 웹사이트 reve.log 개발일지" # 요약
-sample: false # 테스트 글인지 유무
 ---
 
 ## Intro

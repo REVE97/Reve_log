@@ -4,7 +4,6 @@ date: 2026-03-12 # 작성 일자
 category: Trouble Shooting # 카테고리 
 tags: [트러블슈팅] # 태그 
 summary: "ue3 라이브러리 프론트엔드 환경에서 `vite.config.js` 파일을 통해 **CORS 처리**하여 Axios Method 처리하던 중 **`DELETE` 메서드**가 **`DELETE localhost:4545/api/vsoc/monitoring-report/event/19 403(Forbidden)`** 오류 로그가 발생" # 요약
-sample: false # 테스트 글인지 유무
 ---
 
 ## 문제 상황

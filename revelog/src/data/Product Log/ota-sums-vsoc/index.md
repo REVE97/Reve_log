@@ -5,7 +5,6 @@ category: 개발일지 # 카테고리
 tags: [Vue, JavaScript, Pinia, REST API] # 태그 
 summary: "KT DS / 타타대우모빌리티 협업 차량 관리 플랫폼 프론트엔드 초기 개발 및 고도화 개발일지" # 요약
 cover: ./ota-sums-vsoc.png # 썸네일 이미지
-sample: false # 테스트 글인지 유무
 ---
 
 > **개발기간** : _2026.01.20 ~ 2026.04.02_  

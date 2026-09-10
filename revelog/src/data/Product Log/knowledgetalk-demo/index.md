@@ -5,7 +5,6 @@ category: 회고 # 카테고리
 tags: [Vue, JavaScript, SDK, WebRTC] # 태그 
 summary: "Knowledgetalk SDK를 활용한 화상회의 솔루션 데모" # 요약
 cover: ./knowledgetalk demo.png # 썸네일 이미지
-sample: false # 테스트 글인지 유무
 ---
 
 # 회고

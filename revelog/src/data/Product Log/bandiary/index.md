@@ -5,7 +5,6 @@ category: 개발일지 # 카테고리
 tags: [React, JavaScript, Supabase, Vercel, PWA, Microsoft Clarity] # 태그 
 summary: "밴드 활동 다이어리 서비스 Bandiary 개발일지" # 요약
 cover: ./logo.svg # 썸네일 이미지
-sample: false # 테스트 글인지 유무
 ---
 
 ## Intro

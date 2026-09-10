@@ -1678,15 +1678,6 @@ h1 {
   font-weight: 600;
 }
 
-.journal-sample {
-  color: #62686f;
-  background: #f1f1ee;
-  border: 1px solid #e0e0db;
-  border-radius: 4px;
-  padding: 1px 7px;
-  font-size: 11px;
-}
-
 .journal-card h2 {
   margin-top: 12px;
   font-size: 22px;

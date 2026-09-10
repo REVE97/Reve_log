@@ -101,12 +101,6 @@
             <div class="journal-card-content">
               <div class="journal-meta">
                 <span class="journal-category">{{ post.category }}</span>
-                <span
-                  v-if="post.sample"
-                  class="journal-sample"
-                >
-                  테스트 글
-                </span>
                 <time
                   v-if="collection === 'engineering' && post.date"
                   :datetime="post.date"

@@ -5,7 +5,6 @@ category: TIL # 카테고리
 tags: [CSS, FE] # 태그 
 summary: "프론트엔드 CSS 관련 학습 TIL" # 요약
 cover: ./CSS TIL.png # 썸네일 이미지
-sample: false # 테스트 글인지 유무
 ---
 
 ## Layout

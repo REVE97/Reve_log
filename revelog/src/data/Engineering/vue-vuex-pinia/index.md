@@ -5,7 +5,6 @@ category: TIL # 카테고리
 tags: [Vue, Vuex, Pinia] # 태그 
 summary: "Vue, Vuex, Pinia 관련 학습 TIL" # 요약
 cover: ./vue-vuex-pinia.png # 썸네일 이미지
-sample: false # 테스트 글인지 유무
 ---
 
 ## 📗 VUE

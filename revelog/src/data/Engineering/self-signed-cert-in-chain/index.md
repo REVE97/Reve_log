@@ -5,7 +5,6 @@ category: Trouble Shooting # 카테고리
 tags: [트러블슈팅] # 태그 
 summary: "프로젝트를 Github를 통해 git clone 하여 브랜치를 분리하고 npm install 하였을 때 발생" # 요약
 cover: ./chain.svg # 썸네일 이미지
-sample: false # 테스트 글인지 유무
 ---
 
 ## 문제 상황

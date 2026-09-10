@@ -5,7 +5,6 @@ category: 기술 분석 # 카테고리
 tags: [Vue, 라이브러리, 자동화] # 태그 
 summary: "웹 브라우저를 자동으로 조작해서 테스트하는 라이브러리 (사람이 직접 브라우저에서 하는 동작을 코드로 자동화" # 요약
 cover: ./playwright.png # 썸네일 이미지
-sample: false # 테스트 글인지 유무
 ---
 
 ## Playwright

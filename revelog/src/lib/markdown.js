@@ -56,7 +56,6 @@ export function parsePost(source, fallbackTitle = '제목 없는 글') {
     summary: String(metadata.summary || ''),
     cover: String(metadata.cover || ''),
     tags: Array.isArray(metadata.tags) ? metadata.tags.map(String) : [],
-    sample: metadata.sample === true,
   }
 }
 

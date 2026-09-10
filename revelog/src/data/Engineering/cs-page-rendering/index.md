@@ -5,7 +5,6 @@ category: TIL # 카테고리
 tags: [CS] # 태그 
 summary: "SPA / MPA / CSR / SSR 등 페이지 구조, 랜더링 방식 요약" # 요약
 cover: ./page-rendering.jpg # 썸네일 이미지
-sample: false # 테스트 글인지 유무
 ---
 
 ## 페이지 구조

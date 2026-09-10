@@ -5,7 +5,6 @@ category: Trouble Shooting # 카테고리
 tags: [트러블슈팅] # 태그 
 summary: "프로젝트 진행 도중 갑자기 API 호출이 안되며 해당 API의 CDN 도메인에 접속하면 오류 메시지가 출력되는 현상이 발생" # 요약
 cover: ./net-err-cert-invalid.jpeg # 썸네일 이미지
-sample: false # 테스트 글인지 유무
 ---
 
 ## 문제 상황

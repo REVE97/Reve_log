@@ -20,12 +20,6 @@
       <header class="journal-post-header">
         <div class="journal-meta">
           <span class="journal-category">{{ post.category }}</span>
-          <span
-            v-if="post.sample"
-            class="journal-sample"
-          >
-            테스트 글
-          </span>
           <span v-if="post.project">{{ post.project }}</span>
         </div>
         <h1>{{ post.title }}</h1>

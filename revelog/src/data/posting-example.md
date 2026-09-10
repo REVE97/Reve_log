@@ -5,7 +5,6 @@ category: Trouble Shooting # 카테고리
 tags: [Vue, JavaScript, 상태 관리] # 태그 
 summary: "API 응답 전후의 상태를 나누고, 로딩·빈 결과·오류를 명확하게 표현하는 방법을 정리합니다." # 요약
 cover: ./state-flow.svg # 썸네일 이미지
-sample: true # 테스트 글인지 유무
 ---
 # Vue의 반응성, 화면에 데이터가 도착하기까지
 

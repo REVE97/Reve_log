@@ -5,7 +5,6 @@ category: 기술 분석 # 카테고리
 tags: [Vue, 라이브러리] # 태그 
 summary: "사용자가 날짜/시간을 입력할 수 있는 UI를 제공하는 라이브러리" # 요약
 cover: ./vueDatePicker postImage.png # 썸네일 이미지
-sample: false # 테스트 글인지 유무
 ---
 
 ## Vue DatePicker 라이브러리
