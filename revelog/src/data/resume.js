@@ -86,7 +86,7 @@ export const experience = [
       },
       {
         id: 'service-info',
-        period: '2026.07 — 현재',
+        period: '2026.07 — Present',
         title: '사내 서비스 정보 관리 웹페이지',
         summary: 'Vue 3 기반 서비스 운영 정보 통합 관리',
         details: [
