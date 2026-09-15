@@ -109,6 +109,14 @@ export const education = [
     period: '2021.03 — 2026.02',
     status: '졸업',
   },
+  {
+    id: 'kb-its-your-life',
+    school: "KB IT's Your Life",
+    major: '금융 IT 풀스택 개발자 과정',
+    degree: '부트캠프',
+    period: '2025.03 — 2025.08',
+    status: '수료',
+  },
 ]
 
 export const certifications = [
