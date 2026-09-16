@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '../pages/HomePage.vue'
 import SideProjectPage from '../pages/SideProjectPage.vue'
 import CreateMarkdownPage from '../pages/CreateMarkdownPage.vue'
+import ImagesToPdfPage from '../pages/ImagesToPdfPage.vue'
 
 const routes = [
   {
@@ -20,6 +21,12 @@ const routes = [
     name: 'create-markdown',
     component: CreateMarkdownPage,
     meta: { title: 'Markdown 만들기 · REVE' },
+  },
+  {
+    path: '/labs/imagestopdf',
+    name: 'images-to-pdf',
+    component: ImagesToPdfPage,
+    meta: { title: '이미지 PDF 만들기 · REVE' },
   },
   ...['engineering', 'product-log'].flatMap(collection => [
     {
