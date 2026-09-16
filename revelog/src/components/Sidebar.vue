@@ -84,8 +84,8 @@
             id="labs-subnav"
             class="labs-subnav"
           >
-            <RouterLink to="/labs/createmarkdown">Markdown 만들기</RouterLink>
-            <RouterLink to="/labs/imagestopdf">이미지 PDF 만들기</RouterLink>
+            <RouterLink to="/labs/createmarkdown" @click="closeLabsOnCompact">Markdown 만들기</RouterLink>
+            <RouterLink to="/labs/imagestopdf" @click="closeLabsOnCompact">이미지 PDF 만들기</RouterLink>
           </div>
         </div>
       </nav>
@@ -135,18 +135,31 @@
 </template>
 
 <script setup>
-import { computed, ref, watch } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import logo from '../assets/reve_logo.svg'
 import { sideProjects } from '../data/sideProjects'
 
 const route = useRoute()
 const isLabs = computed(() => route.path.startsWith('/labs/'))
-const labsOpen = ref(isLabs.value)
+
+const compactSidebar = window.matchMedia('(max-width: 760px)')
+const labsOpen = ref(isLabs.value && !compactSidebar.matches)
+
+function closeLabsOnCompact() {
+  if (compactSidebar.matches) labsOpen.value = false
+}
+
+function syncLabsMenu() {
+  if (compactSidebar.matches) labsOpen.value = false
+  else if (isLabs.value) labsOpen.value = true
+}
+
+onMounted(() => compactSidebar.addEventListener('change', syncLabsMenu))
+onBeforeUnmount(() => compactSidebar.removeEventListener('change', syncLabsMenu))
+
 watch(
-  () => route.path,
-  () => {
-    if (isLabs.value) labsOpen.value = true
-  },
+  () => route.fullPath,
+  syncLabsMenu,
 )
 </script>
