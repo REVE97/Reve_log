@@ -130,7 +130,7 @@
         </RouterLink>
       </nav>
     </div>
-    <p class="sidebar-caption">Update / 2026.09.10</p>
+    <p class="sidebar-caption">Update / 2026.09.16</p>
   </aside>
 </template>
 
