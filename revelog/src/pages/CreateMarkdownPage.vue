@@ -80,14 +80,12 @@
             class="markdown-section"
             aria-labelledby="metadata-heading"
           >
-            <div class="markdown-section-heading">
-              <h2 id="metadata-heading">
-                <span>01</span>
-                글 정보 (메타데이터)
-              </h2>
-              <span>* 필수 입력</span>
-            </div>
-            <div class="markdown-fields">
+            <button type="button" class="markdown-metadata-toggle" :aria-expanded="metadataOpen" aria-controls="markdown-metadata" @click="metadataOpen = !metadataOpen">
+              <span id="metadata-heading"><b>01</b> 글 정보</span>
+              <span class="markdown-metadata-summary"><strong>{{ form.title || '글 정보를 입력해 주세요' }}</strong><small>{{ collection }} · {{ form.category }} · {{ form.date }}</small></span>
+              <span class="markdown-metadata-action">{{ metadataOpen ? '접기' : '수정' }} <span aria-hidden="true">{{ metadataOpen ? '⌃' : '⌄' }}</span></span>
+            </button>
+            <div v-show="metadataOpen" id="markdown-metadata" class="markdown-fields markdown-metadata-fields">
               <label class="markdown-field is-full">
                 <span>제목 *</span>
                 <input
@@ -163,19 +161,47 @@
               </h2>
               <span>MARKDOWN</span>
             </div>
-            <label class="markdown-field">
-              <span class="markdown-body-label">내용 *</span>
+            <label for="markdown-body-editor" class="markdown-body-label">내용 *</label>
+            <div class="markdown-editor-shell">
+              <div class="markdown-format-toolbar" role="group" aria-label="본문 서식" @pointerdown.prevent @keydown.esc="closeColorPalette">
+                <button v-for="tool in formattingTools" :key="tool.action" type="button" :title="tool.title" :aria-label="tool.title" :class="['markdown-format-button', `format-${tool.action}`]" @click="applyFormat(tool.action)">{{ tool.label }}</button>
+                <div ref="colorControl" class="markdown-color-control">
+                  <button ref="colorButton" type="button" class="markdown-format-button markdown-color-button" aria-label="글자색" :aria-expanded="colorOpen" aria-controls="markdown-color-palette" @click="colorOpen = !colorOpen"><span :style="{ borderColor: currentColor }">A</span><small aria-hidden="true">⌄</small></button>
+                  <div v-if="colorOpen" id="markdown-color-palette" class="markdown-color-palette" role="group" aria-label="글자색 선택">
+                    <strong>글자색</strong>
+                    <div class="markdown-color-swatches">
+                      <button v-for="color in textColors" :key="color.value" type="button" :style="{ '--swatch-color': color.value }" :aria-label="color.name" :aria-pressed="currentColor === color.value" :title="color.name" @click="applyColor(color.value)"><span aria-hidden="true">{{ currentColor === color.value ? '✓' : '' }}</span></button>
+                    </div>
+                    <button type="button" class="markdown-color-reset" @click="applyColor(null)">기본색으로 되돌리기</button>
+                  </div>
+                </div>
+                <button type="button" class="markdown-format-button" aria-label="인라인 코드" title="인라인 코드" @click="applyFormat('code')"><span class="icon icon-editor-code" aria-hidden="true"></span></button>
+                <button type="button" class="markdown-format-button" aria-label="인용문" title="인용문" @click="applyFormat('quote')"><span class="icon icon-editor-quote" aria-hidden="true"></span></button>
+                <button type="button" class="markdown-format-button" aria-label="글머리 목록" title="글머리 목록" @click="applyFormat('list')"><span class="icon icon-editor-list" aria-hidden="true"></span></button>
+                <span id="body-help" class="markdown-format-help">{{ selection.end > selection.start ? '선택한 텍스트에 적용' : '텍스트를 선택하고 서식을 적용하세요.' }}</span>
+              </div>
               <textarea
-                v-model="form.body"
+                id="markdown-body-editor"
+                ref="bodyInput"
+                :value="form.body"
                 class="markdown-body-input"
                 rows="20"
                 required
                 spellcheck="false"
                 :placeholder="bodyPlaceholder"
                 aria-describedby="body-help"
+                @beforeinput="rememberBeforeInput"
+                @input="onBodyInput"
+                @select="rememberSelection"
+                @keyup="rememberSelection"
+                @click="rememberSelection"
+                @blur="rememberSelection"
+                @keydown="editorShortcut"
               ></textarea>
-              <small id="body-help">본문은 ## 소제목부터 작성하세요.</small>
-            </label>
+              <div class="markdown-editor-footer"><div class="markdown-history" role="group" aria-label="편집 기록" @pointerdown.prevent><button type="button" class="markdown-format-button" aria-label="실행 취소" title="실행 취소 (Ctrl/⌘ Z)" :disabled="!undoHistory.length" @click="undoEdit"><span class="icon icon-editor-undo" aria-hidden="true"></span></button>
+                <button type="button" class="markdown-format-button" aria-label="다시 실행" title="다시 실행 (Ctrl/⌘ Shift Z)" :disabled="!redoHistory.length" @click="redoEdit"><span class="icon icon-editor-redo" aria-hidden="true"></span></button></div></div>
+            </div>
+            <p class="markdown-editor-message" role="status">{{ editorMessage }}</p>
           </section>
         </form>
 
@@ -270,9 +296,115 @@
 </template>
 
 <script setup>
-import { computed, reactive, ref, watch } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue'
 import { categoryOptions, createMarkdown, importMarkdown } from '../lib/createMarkdown'
 import { parsePost, renderPost } from '../lib/markdown'
+import { formatSelection, textColors } from '../lib/markdownEditor'
+
+const metadataOpen = ref(true)
+const bodyInput = ref(null)
+const colorControl = ref(null)
+const colorButton = ref(null)
+const colorOpen = ref(false)
+const currentColor = ref('#3e5066')
+const editorMessage = ref('')
+const selection = reactive({ start: 0, end: 0 })
+const undoHistory = ref([])
+const redoHistory = ref([])
+let beforeInput = null
+const formattingTools = [
+  { action: 'h2', label: '제목', title: '제목 적용 (H2)' },
+  { action: 'h3', label: '부제목', title: '부제목 적용 (H3)' },
+  { action: 'bold', label: 'B', title: '굵게 (Ctrl/⌘ B)' },
+  { action: 'italic', label: 'I', title: '기울임 (Ctrl/⌘ I)' },
+  { action: 'strike', label: 'S', title: '취소선' },
+]
+function rememberSelection() {
+  if (!bodyInput.value) return
+  selection.start = bodyInput.value.selectionStart
+  selection.end = bodyInput.value.selectionEnd
+}
+function snapshot() {
+  return { body: form.body, start: selection.start, end: selection.end }
+}
+function rememberBeforeInput() {
+  rememberSelection()
+  beforeInput = snapshot()
+}
+function pushUndo(value) {
+  undoHistory.value.push(value)
+  if (undoHistory.value.length > 100) undoHistory.value.shift()
+  redoHistory.value = []
+}
+function onBodyInput(event) {
+  if (event.target.value !== form.body) pushUndo(beforeInput || snapshot())
+  form.body = event.target.value
+  beforeInput = null
+  rememberSelection()
+  editorMessage.value = ''
+}
+async function restoreEdit(value) {
+  form.body = value.body
+  await nextTick()
+  bodyInput.value?.focus({ preventScroll: true })
+  bodyInput.value?.setSelectionRange(value.start, value.end)
+  selection.start = value.start
+  selection.end = value.end
+}
+function undoEdit() {
+  if (!undoHistory.value.length) return
+  rememberSelection()
+  redoHistory.value.push(snapshot())
+  restoreEdit(undoHistory.value.pop())
+  editorMessage.value = '실행을 취소했습니다.'
+}
+function redoEdit() {
+  if (!redoHistory.value.length) return
+  rememberSelection()
+  undoHistory.value.push(snapshot())
+  restoreEdit(redoHistory.value.pop())
+  editorMessage.value = '다시 적용했습니다.'
+}
+async function applyFormat(action, value) {
+  rememberSelection()
+  const result = formatSelection(form.body, selection.start, selection.end, action, value)
+  if (!result) return
+  if (result.body !== form.body) pushUndo(snapshot())
+  colorOpen.value = false
+  await restoreEdit(result)
+  editorMessage.value = '서식을 적용했습니다. 미리보기에서 확인할 수 있습니다.'
+}
+function applyColor(value) {
+  currentColor.value = value || '#242628'
+  applyFormat('color', value)
+}
+function closeColorPalette(event) {
+  const wasColorOpen = colorOpen.value
+  colorOpen.value = false
+  if (event?.key === 'Escape') {
+    if (wasColorOpen) colorButton.value?.focus()
+    else bodyInput.value?.focus({ preventScroll: true })
+  }
+}
+function dismissColor(event) {
+  if (!colorControl.value?.contains(event.target)) colorOpen.value = false
+}
+function editorShortcut(event) {
+  if (event.key === 'Escape') {
+    closeColorPalette(event)
+    return
+  }
+  if (event.isComposing || !(event.ctrlKey || event.metaKey) || event.altKey) return
+  const key = event.key.toLowerCase()
+  if (['b', 'i', 'z', 'y'].includes(key)) {
+    event.preventDefault()
+    if (key === 'z') event.shiftKey ? redoEdit() : undoEdit()
+    else if (key === 'y') redoEdit()
+    else applyFormat(key === 'b' ? 'bold' : 'italic')
+  }
+}
+onMounted(() => document.addEventListener('pointerdown', dismissColor))
+onBeforeUnmount(() => document.removeEventListener('pointerdown', dismissColor))
 
 const now = new Date()
 const today = [
@@ -290,6 +422,7 @@ const form = reactive({
   body: '',
 })
 const preview = ref(false)
+watch(preview, () => closeColorPalette())
 const error = ref('')
 const notice = ref('')
 const fileInput = ref(null)
@@ -341,6 +474,11 @@ async function loadMarkdown(event) {
     collection.value = imported.collection
     Object.assign(form, imported.form)
     preview.value = false
+    selection.start = selection.end = 0
+    undoHistory.value = []
+    redoHistory.value = []
+    metadataOpen.value = true
+    closeColorPalette()
     notice.value = `${file.name} 파일을 불러왔습니다. cover는 제외하고 폼에 반영했습니다.`
   } catch (cause) {
     error.value = `파일을 불러오지 못했습니다. ${cause.message}`
@@ -354,6 +492,8 @@ function downloadMarkdown() {
   error.value = ''
   notice.value = ''
   if (!form.title.trim() || !form.date || !form.category.trim() || !form.body.trim()) {
+    metadataOpen.value = true
+    preview.value = false
     error.value = '제목, 작성일, 분류, 본문을 모두 입력해 주세요.'
     return
   }

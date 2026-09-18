@@ -1,4 +1,5 @@
 import MarkdownIt from 'markdown-it'
+import { markdownColorPlugin } from './markdownEditor.js'
 import { parse } from 'yaml'
 import hljs from 'highlight.js/lib/core'
 import javascript from 'highlight.js/lib/languages/javascript'
@@ -22,6 +23,7 @@ const md = new MarkdownIt({
       : ''
   },
 })
+md.use(markdownColorPlugin)
 
 // Raw HTML stays escaped. Images may use local files or HTTPS URLs.
 const defaultValidateLink = md.validateLink.bind(md)
