@@ -210,4 +210,5 @@ cover: ./cert-information-processing.png # 썸네일 이미지
 - 제 3정규형 : 제 2정규형 + 이행적 함수 종속 제거
 - BCNF : 모든 결정자가 후보키여야 한다. (X->Y 일때 X가 무조건 후보키)
 
+
 ---
