@@ -105,7 +105,7 @@
                   v-if="collection === 'engineering' && post.date"
                   :datetime="post.date"
                 >
-                  {{ post.date.replaceAll('-', '.') }}
+                  {{ post.date.replaceAll('-', '.') }} - update
                 </time>
               </div>
               <h2>{{ post.title }}</h2>
