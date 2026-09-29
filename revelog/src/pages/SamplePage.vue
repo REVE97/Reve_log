@@ -185,10 +185,10 @@
             aria-label="코드 언어"
           >
             <button
-              v-for="tab in ['Vue', 'CSS']"
+              v-for="tab in codeTabs"
               :key="tab"
               :aria-pressed="codeTab === tab"
-              @click="codeTab = tab"
+              @click="codeTab = tab; copyMessage = ''"
             >
               {{ tab }}
             </button>
@@ -224,6 +224,7 @@ hljs.registerLanguage('css', css)
 
 const components = import.meta.glob('../data/samples/*.vue', { eager: true, import: 'default' })
 const sources = import.meta.glob('../data/samples/*.vue', { eager: true, query: '?raw', import: 'default' })
+const reactSources = import.meta.glob('../data/samples/*.jsx', { eager: true, query: '?raw', import: 'default' })
 const definitions = [
   ['DefaultButton', 'Default Button', '버튼', 'Button', '기본 버튼'],
   ['SearchInput', 'Search Input', '검색창', 'Input', '입력한 검색어로 목록을 필터링합니다'],
@@ -236,6 +237,7 @@ const samples = definitions.map(([id, name, category, tag, description]) => ({
   id, name, category, tag, description,
   component: components[`../data/samples/${id}.vue`],
   source: sources[`../data/samples/${id}.vue`],
+  reactSource: reactSources[`../data/samples/${id}.jsx`],
 }))
 const categories = ['전체', '버튼', '검색창', '필터', '토글', '로딩']
 const query = ref('')
@@ -267,14 +269,23 @@ watch([query, category], () => {
   currentPage.value = 1
 }, { flush: 'sync' })
 
-const visibleCode = computed(() => codeTab.value === 'Vue' ? selected.value.source : selected.value.source.match(/<style scoped>([\s\S]*?)<\/style>/)?.[1].trim() || '')
-const highlightedCode = computed(() => hljs.highlight(visibleCode.value, { language: codeTab.value === 'Vue' ? 'xml' : 'css' }).value)
+const codeTabs = computed(() => selected.value.reactSource ? ['Vue', 'React', 'CSS'] : ['Vue', 'CSS'])
+const visibleCode = computed(() => {
+  if (codeTab.value === 'Vue') return selected.value.source
+  if (codeTab.value === 'React') return selected.value.reactSource || ''
+  return selected.value.source.match(/<style scoped>([\s\S]*?)<\/style>/)?.[1].trim() || ''
+})
+const codeLanguages = { Vue: 'xml', React: 'javascript', CSS: 'css' }
+const highlightedCode = computed(() => hljs.highlight(visibleCode.value, {
+  language: codeLanguages[codeTab.value],
+}).value)
 
 function resetSample(id) {
   sampleResetKeys.value[id]++
 }
 async function selectSample(sample) {
   selectedId.value = sample.id
+  if (!codeTabs.value.includes(codeTab.value)) codeTab.value = 'Vue'
   copyMessage.value = ''
   if (window.matchMedia('(max-width: 1100px)').matches) {
     await nextTick()
