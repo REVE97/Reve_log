@@ -66,7 +66,43 @@
               :class="{ selected: selected.id === sample.id }"
             >
               <div class="card-demo">
-                <component :is="sample.component" />
+                <div class="card-demo-toolbar">
+                  <span>PREVIEW</span>
+                  <button
+                    type="button"
+                    class="sample-reset"
+                    :aria-label="`${sample.name} 초기화`"
+                    title="샘플 초기화"
+                    @click="resetSample(sample.id)"
+                  >
+                    <span
+                      class="icon icon-rotate"
+                      aria-hidden="true"
+                    ></span>
+                  </button>
+                </div>
+                <div class="card-demo-content">
+                  <component
+                    :is="sample.component"
+                    :key="`${sample.id}-${sampleStates[sample.id].resetKey}`"
+                    :state="sampleStates[sample.id].state"
+                  />
+                </div>
+                <div
+                  class="state-control"
+                  role="group"
+                  :aria-label="`${sample.name} 미리보기 상태`"
+                >
+                  <button
+                    v-for="state in sample.states"
+                    :key="state"
+                    type="button"
+                    :aria-pressed="sampleStates[sample.id].state === state"
+                    @click="sampleStates[sample.id].state = state"
+                  >
+                    {{ state }}
+                  </button>
+                </div>
               </div>
               <button
                 class="card-caption"
@@ -78,10 +114,10 @@
                   <small>{{ sample.tag }} · Vue</small>
                 </span>
                 <span
-                  class="code-symbol"
+                  class="icon icon-editor-code code-symbol"
                   aria-hidden="true"
-                >&lt;/&gt;</span>
-                <span class="sr-only">미리보기 및 코드 보기</span>
+                ></span>
+                <span class="sr-only">코드 보기</span>
               </button>
             </article>
           </div>
@@ -143,47 +179,13 @@
         <section
           ref="inspector"
           class="inspector"
-          aria-label="선택한 컴포넌트 미리보기 및 코드"
+          aria-label="선택한 컴포넌트 코드"
           tabindex="-1"
         >
           <header class="inspector-heading">
             <h2>{{ selected.name }}</h2>
             <p>{{ selected.description }}</p>
           </header>
-
-          <div class="live-preview">
-            <div class="preview-toolbar">
-              <span>LIVE PREVIEW</span>
-              <button
-                aria-label="샘플 초기화"
-                title="초기화"
-                @click="resetPreview"
-              >
-                ↻
-              </button>
-            </div>
-            <div class="preview-demo">
-              <component
-                :is="selected.component"
-                :key="`${selected.id}-${resetKey}`"
-                :state="previewState"
-              />
-            </div>
-          </div>
-
-          <div
-            class="state-control"
-            aria-label="미리보기 상태"
-          >
-            <button
-              v-for="state in previewStates"
-              :key="state"
-              :aria-pressed="previewState === state"
-              @click="previewState = state"
-            >
-              {{ state }}
-            </button>
-          </div>
 
           <div class="code-heading">
             <h3>코드</h3>
@@ -251,6 +253,7 @@ const samples = definitions.map(([id, name, category, tag, description]) => ({
   id, name, category, tag, description,
   component: components[`../data/samples/${id}.vue`],
   source: sources[`../data/samples/${id}.vue`],
+  states: id === 'PrimaryButton' ? ['Default', 'Hover', 'Disabled'] : ['Default', 'Disabled'],
 }))
 const categories = ['전체', '버튼', '검색창', '필터', '토글', '로딩']
 const query = ref('')
@@ -260,11 +263,11 @@ const currentPage = ref(1)
 const selectedId = ref(samples[0].id)
 const selected = computed(() => samples.find(sample => sample.id === selectedId.value))
 const codeTab = ref('CSS')
-const previewState = ref('Default')
-const resetKey = ref(0)
+const sampleStates = ref(Object.fromEntries(
+  samples.map(sample => [sample.id, { state: 'Default', resetKey: 0 }]),
+))
 const inspector = ref(null)
 const copyMessage = ref('')
-const previewStates = computed(() => selectedId.value === 'PrimaryButton' ? ['Default', 'Hover', 'Disabled'] : ['Default', 'Disabled'])
 const filteredSamples = computed(() => {
   const search = query.value.trim().toLowerCase()
   return samples.filter(sample =>
@@ -285,14 +288,13 @@ watch([query, category], () => {
 const visibleCode = computed(() => codeTab.value === 'Vue' ? selected.value.source : selected.value.source.match(/<style scoped>([\s\S]*?)<\/style>/)?.[1].trim() || '')
 const highlightedCode = computed(() => hljs.highlight(visibleCode.value, { language: codeTab.value === 'Vue' ? 'xml' : 'css' }).value)
 
-function resetPreview() {
-  previewState.value = 'Default'
-  resetKey.value++
+function resetSample(id) {
+  sampleStates.value[id].state = 'Default'
+  sampleStates.value[id].resetKey++
 }
 async function selectSample(sample) {
   selectedId.value = sample.id
   copyMessage.value = ''
-  resetPreview()
   if (window.matchMedia('(max-width: 1100px)').matches) {
     await nextTick()
     inspector.value?.focus({ preventScroll: true })
