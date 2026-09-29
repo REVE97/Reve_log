@@ -4,7 +4,7 @@
       <span aria-hidden="true">
         ⌕
       </span>
-      <input v-model="query" :disabled="state === 'Disabled'" aria-label="샘플 검색" placeholder="검색어를 입력하세요" />
+      <input v-model="query" aria-label="샘플 검색" placeholder="검색어를 입력하세요" />
     </label>
     <small aria-live="polite">
       {{ results.join(' · ') || '검색 결과가 없습니다' }}
@@ -15,7 +15,6 @@
 <script setup>
 import { ref, computed } from 'vue'
 
-defineProps({ state: { type: String, default: 'Default' } })
 const query = ref('')
 const results = computed(() => ['Vue', 'React', 'CSS'].filter(item => item.toLowerCase().includes(query.value.toLowerCase())))
 </script>

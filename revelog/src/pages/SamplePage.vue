@@ -84,24 +84,8 @@
                 <div class="card-demo-content">
                   <component
                     :is="sample.component"
-                    :key="`${sample.id}-${sampleStates[sample.id].resetKey}`"
-                    :state="sampleStates[sample.id].state"
+                    :key="`${sample.id}-${sampleResetKeys[sample.id]}`"
                   />
-                </div>
-                <div
-                  class="state-control"
-                  role="group"
-                  :aria-label="`${sample.name} 미리보기 상태`"
-                >
-                  <button
-                    v-for="state in sample.states"
-                    :key="state"
-                    type="button"
-                    :aria-pressed="sampleStates[sample.id].state === state"
-                    @click="sampleStates[sample.id].state = state"
-                  >
-                    {{ state }}
-                  </button>
                 </div>
               </div>
               <button
@@ -238,11 +222,10 @@ hljs.registerLanguage('xml', xml)
 hljs.registerLanguage('javascript', javascript)
 hljs.registerLanguage('css', css)
 
-// One source of truth: the displayed code is the component running in the preview.
 const components = import.meta.glob('../data/samples/*.vue', { eager: true, import: 'default' })
 const sources = import.meta.glob('../data/samples/*.vue', { eager: true, query: '?raw', import: 'default' })
 const definitions = [
-  ['PrimaryButton', 'Primary Button', '버튼', 'Button', '기본 액션을 위한 버튼'],
+  ['DefaultButton', 'Default Button', '버튼', 'Button', '기본 버튼'],
   ['SearchInput', 'Search Input', '검색창', 'Input', '입력한 검색어로 목록을 필터링합니다'],
   ['FilterChips', 'Filter Chips', '필터', 'Filter', '카테고리를 선택해 결과를 좁혀 보세요'],
   ['ToggleSwitch', 'Toggle Switch', '토글', 'Toggle', '알림과 자동 저장 설정을 켜고 끕니다'],
@@ -253,7 +236,6 @@ const samples = definitions.map(([id, name, category, tag, description]) => ({
   id, name, category, tag, description,
   component: components[`../data/samples/${id}.vue`],
   source: sources[`../data/samples/${id}.vue`],
-  states: id === 'PrimaryButton' ? ['Default', 'Hover', 'Disabled'] : ['Default', 'Disabled'],
 }))
 const categories = ['전체', '버튼', '검색창', '필터', '토글', '로딩']
 const query = ref('')
@@ -263,8 +245,8 @@ const currentPage = ref(1)
 const selectedId = ref(samples[0].id)
 const selected = computed(() => samples.find(sample => sample.id === selectedId.value))
 const codeTab = ref('CSS')
-const sampleStates = ref(Object.fromEntries(
-  samples.map(sample => [sample.id, { state: 'Default', resetKey: 0 }]),
+const sampleResetKeys = ref(Object.fromEntries(
+  samples.map(sample => [sample.id, 0]),
 ))
 const inspector = ref(null)
 const copyMessage = ref('')
@@ -289,8 +271,7 @@ const visibleCode = computed(() => codeTab.value === 'Vue' ? selected.value.sour
 const highlightedCode = computed(() => hljs.highlight(visibleCode.value, { language: codeTab.value === 'Vue' ? 'xml' : 'css' }).value)
 
 function resetSample(id) {
-  sampleStates.value[id].state = 'Default'
-  sampleStates.value[id].resetKey++
+  sampleResetKeys.value[id]++
 }
 async function selectSample(sample) {
   selectedId.value = sample.id

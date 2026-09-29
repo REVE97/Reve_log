@@ -1,6 +1,6 @@
 <template>
   <div class="demo">
-    <button :disabled="loading || state === 'Disabled'" :aria-busy="loading" @click="save">
+    <button :disabled="loading" :aria-busy="loading" @click="save">
       <span v-if="loading" class="spinner" aria-hidden="true">
       </span>
       {{ loading ? '저장 중...' : '저장하기' }}
@@ -14,7 +14,6 @@
 <script setup>
 import { ref, onBeforeUnmount } from 'vue'
 
-defineProps({ state: { type: String, default: 'Default' } })
 const loading = ref(false)
 const message = ref('클릭하면 저장 과정을 보여드려요')
 let timer

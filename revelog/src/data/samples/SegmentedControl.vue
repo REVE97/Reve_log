@@ -1,7 +1,7 @@
 <template>
   <div class="demo">
     <div class="segments" aria-label="샘플 보기 방식">
-      <button v-for="mode in modes" :key="mode" :disabled="state === 'Disabled'" :aria-pressed="selected === mode" @click="selected = mode">
+      <button v-for="mode in modes" :key="mode" :aria-pressed="selected === mode" @click="selected = mode">
         {{ mode === '목록' ? '☰' : '▦' }} {{ mode }}
       </button>
     </div>
@@ -16,7 +16,6 @@
 <script setup>
 import { ref } from 'vue'
 
-defineProps({ state: { type: String, default: 'Default' } })
 const modes = ['목록', '그리드']
 const selected = ref('목록')
 </script>

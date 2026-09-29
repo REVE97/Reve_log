@@ -1,7 +1,7 @@
 <template>
   <div class="demo">
     <div class="chips" aria-label="샘플 분야 필터">
-      <button v-for="category in categories" :key="category" :aria-pressed="selected === category" :disabled="state === 'Disabled'" @click="selected = category">
+      <button v-for="category in categories" :key="category" :aria-pressed="selected === category" @click="selected = category">
         {{ category }}
       </button>
     </div>
@@ -14,7 +14,6 @@
 <script setup>
 import { ref, computed } from 'vue'
 
-defineProps({ state: { type: String, default: 'Default' } })
 const categories = ['전체', '디자인', '개발']
 const selected = ref('전체')
 const items = [{ name: 'UI 디자인', category: '디자인' }, { name: 'Vue 개발', category: '개발' }]

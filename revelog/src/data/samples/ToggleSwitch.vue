@@ -1,7 +1,7 @@
 <template>
   <div class="demo toggles">
     <label v-for="option in options" :key="option.label">
-      <input v-model="option.enabled" type="checkbox" role="switch" :disabled="state === 'Disabled'" />
+      <input v-model="option.enabled" type="checkbox" role="switch" />
       <span class="track" aria-hidden="true">
       </span>
       {{ option.label }}
@@ -12,7 +12,6 @@
 <script setup>
 import { ref } from 'vue'
 
-defineProps({ state: { type: String, default: 'Default' } })
 const options = ref([{ label: '알림 받기', enabled: true }, { label: '자동 저장', enabled: false }])
 </script>
 

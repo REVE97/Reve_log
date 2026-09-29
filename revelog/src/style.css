@@ -4096,37 +4096,6 @@ h1 {
   margin: 2px 0 16px;
 }
 
-.sample-workspace .state-control {
-  display: flex;
-  gap: 3px;
-  padding: 3px;
-  margin-top: 7px;
-  border: 1px solid #dfe0df;
-  border-radius: 5px;
-  background: #f8f7f5;
-}
-
-.sample-workspace .state-control button {
-  flex: 1;
-  min-width: 0;
-  min-height: 34px;
-  border: 0;
-  border-radius: 3px;
-  background: transparent;
-  color: #566171;
-  font-size: 10px;
-  padding: 6px;
-}
-
-.sample-workspace .state-control button:hover {
-  background: #e9edf3;
-}
-
-.sample-workspace .state-control button[aria-pressed="true"] {
-  background: #3e5066;
-  color: white;
-}
-
 .sample-workspace .code-heading {
   display: flex;
   align-items: center;
