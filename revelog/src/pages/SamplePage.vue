@@ -222,9 +222,23 @@ hljs.registerLanguage('xml', xml)
 hljs.registerLanguage('javascript', javascript)
 hljs.registerLanguage('css', css)
 
-const components = import.meta.glob('../data/samples/*.vue', { eager: true, import: 'default' })
-const sources = import.meta.glob('../data/samples/*.vue', { eager: true, query: '?raw', import: 'default' })
-const reactSources = import.meta.glob('../data/samples/*.jsx', { eager: true, query: '?raw', import: 'default' })
+const components = import.meta.glob('../data/samples/*.vue', {
+  eager: true,
+  import: 'default',
+})
+const sources = import.meta.glob('../data/samples/*.vue', {
+  eager: true,
+  query: '?raw',
+  import: 'default',
+})
+const reactSources = import.meta.glob('../data/samples/*.jsx', {
+  eager: true,
+  query: '?raw',
+  import: 'default',
+})
+
+// 추가 리스트
+// 입력 순서 : 컴포넌트명, 제목, 필터링 카테고리, 종류명, 설명
 const definitions = [
   ['DefaultButton', 'Default Button', '버튼', 'Button', '기본 버튼'],
   ['SearchInput', 'Search Input', '검색창', 'Input', '입력한 검색어로 목록을 필터링합니다'],
@@ -233,68 +247,116 @@ const definitions = [
   ['SegmentedControl', 'Segmented Control', '필터', 'Navigation', '목록과 그리드 보기 전환'],
   ['LoadingButton', 'Loading Button', '로딩', 'Feedback', '저장 중 상태와 완료 피드백을 확인하세요'],
 ]
+
 const samples = definitions.map(([id, name, category, tag, description]) => ({
-  id, name, category, tag, description,
+  id,
+  name,
+  category,
+  tag,
+  description,
   component: components[`../data/samples/${id}.vue`],
   source: sources[`../data/samples/${id}.vue`],
   reactSource: reactSources[`../data/samples/${id}.jsx`],
 }))
+
 const categories = ['전체', '버튼', '검색창', '필터', '토글', '로딩']
 const query = ref('')
 const category = ref('전체')
 const pageSize = 6
 const currentPage = ref(1)
 const selectedId = ref(samples[0].id)
-const selected = computed(() => samples.find(sample => sample.id === selectedId.value))
+const selected = computed(() =>
+  samples.find(sample => sample.id === selectedId.value),
+)
 const codeTab = ref('CSS')
-const sampleResetKeys = ref(Object.fromEntries(
-  samples.map(sample => [sample.id, 0]),
-))
+const sampleResetKeys = ref(
+  Object.fromEntries(
+    samples.map(sample => [sample.id, 0]),
+  ),
+)
 const inspector = ref(null)
 const copyMessage = ref('')
+
 const filteredSamples = computed(() => {
   const search = query.value.trim().toLowerCase()
-  return samples.filter(sample =>
-    (category.value === '전체' || sample.category === category.value) &&
-    `${sample.name} ${sample.category} ${sample.tag} ${sample.description}`.toLowerCase().includes(search),
+
+  return samples.filter(
+    sample =>
+      (category.value === '전체' || sample.category === category.value) &&
+      `${sample.name} ${sample.category} ${sample.tag} ${sample.description}`
+        .toLowerCase()
+        .includes(search),
   )
 })
-const totalPages = computed(() => Math.ceil(filteredSamples.value.length / pageSize))
+
+const totalPages = computed(() =>
+  Math.ceil(filteredSamples.value.length / pageSize),
+)
+
 const paginatedSamples = computed(() => {
   const start = (currentPage.value - 1) * pageSize
+
   return filteredSamples.value.slice(start, start + pageSize)
 })
 
-watch([query, category], () => {
-  currentPage.value = 1
-}, { flush: 'sync' })
+watch(
+  [query, category],
+  () => {
+    currentPage.value = 1
+  },
+  { flush: 'sync' },
+)
 
-const codeTabs = computed(() => selected.value.reactSource ? ['Vue', 'React', 'CSS'] : ['Vue', 'CSS'])
+const codeTabs = computed(() =>
+  selected.value.reactSource ? ['Vue', 'React', 'CSS'] : ['Vue', 'CSS'],
+)
+
 const visibleCode = computed(() => {
   if (codeTab.value === 'Vue') return selected.value.source
   if (codeTab.value === 'React') return selected.value.reactSource || ''
-  return selected.value.source.match(/<style scoped>([\s\S]*?)<\/style>/)?.[1].trim() || ''
+
+  return (
+    selected.value.source.match(/<style scoped>([\s\S]*?)<\/style>/)?.[1].trim() || ''
+  )
 })
-const codeLanguages = { Vue: 'xml', React: 'javascript', CSS: 'css' }
-const highlightedCode = computed(() => hljs.highlight(visibleCode.value, {
-  language: codeLanguages[codeTab.value],
-}).value)
+
+const codeLanguages = {
+  Vue: 'xml',
+  React: 'javascript',
+  CSS: 'css',
+}
+
+const highlightedCode = computed(() =>
+  hljs.highlight(visibleCode.value, {
+    language: codeLanguages[codeTab.value],
+  }).value,
+)
 
 function resetSample(id) {
   sampleResetKeys.value[id]++
 }
+
 async function selectSample(sample) {
   selectedId.value = sample.id
+
   if (!codeTabs.value.includes(codeTab.value)) codeTab.value = 'Vue'
   copyMessage.value = ''
+
   if (window.matchMedia('(max-width: 1100px)').matches) {
     await nextTick()
     inspector.value?.focus({ preventScroll: true })
-    inspector.value?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' })
+    inspector.value?.scrollIntoView({
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        ? 'auto'
+        : 'smooth',
+      block: 'start',
+    })
   }
 }
+
 async function copyCode() {
   const label = `${selected.value.name} ${codeTab.value}`
+
   try {
     await navigator.clipboard.writeText(visibleCode.value)
     copyMessage.value = `${label} 코드를 복사했습니다.`
