@@ -95,7 +95,7 @@
               >
                 <span>
                   <strong>{{ sample.name }}</strong>
-                  <small>{{ sample.tag }} · Vue</small>
+                  <small>{{ sample.tag }}</small>
                 </span>
                 <span
                   class="icon icon-editor-code code-symbol"
