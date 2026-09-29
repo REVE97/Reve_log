@@ -86,6 +86,7 @@
           >
             <RouterLink to="/labs/createmarkdown" @click="closeLabsOnCompact">Markdown 만들기</RouterLink>
             <RouterLink to="/labs/imagestopdf" @click="closeLabsOnCompact">이미지 PDF 만들기</RouterLink>
+            <RouterLink to="/labs/sample" @click="closeLabsOnCompact">UI 샘플</RouterLink>
           </div>
         </div>
       </nav>
@@ -130,7 +131,7 @@
         </RouterLink>
       </nav>
     </div>
-    <p class="sidebar-caption">Update / 2026.09.16</p>
+    <p class="sidebar-caption">Update / 2026.09.29</p>
   </aside>
 </template>
 

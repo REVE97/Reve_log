@@ -4,6 +4,7 @@ import HomePage from '../pages/HomePage.vue'
 import SideProjectPage from '../pages/SideProjectPage.vue'
 import CreateMarkdownPage from '../pages/CreateMarkdownPage.vue'
 import ImagesToPdfPage from '../pages/ImagesToPdfPage.vue'
+import SamplePage from '../pages/SamplePage.vue'
 
 const routes = [
   {
@@ -27,6 +28,12 @@ const routes = [
     name: 'images-to-pdf',
     component: ImagesToPdfPage,
     meta: { title: '이미지 PDF 만들기 · REVE' },
+  },
+  {
+    path: '/labs/sample',
+    name: 'sample',
+    component: SamplePage,
+    meta: { title: 'UI 샘플 · REVE' },
   },
   ...['engineering', 'product-log'].flatMap(collection => [
     {
