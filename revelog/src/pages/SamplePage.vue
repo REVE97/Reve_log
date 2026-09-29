@@ -240,12 +240,8 @@ const reactSources = import.meta.glob('../data/samples/*.jsx', {
 // 추가 리스트
 // 입력 순서 : 컴포넌트명, 제목, 필터링 카테고리, 종류명, 설명
 const definitions = [
-  ['DefaultButton', 'Default Button', '버튼', 'Button', '기본 버튼'],
-  ['SearchInput', 'Search Input', '검색창', 'Input', '입력한 검색어로 목록을 필터링합니다'],
-  ['FilterChips', 'Filter Chips', '필터', 'Filter', '카테고리를 선택해 결과를 좁혀 보세요'],
-  ['ToggleSwitch', 'Toggle Switch', '토글', 'Toggle', '알림과 자동 저장 설정을 켜고 끕니다'],
-  ['SegmentedControl', 'Segmented Control', '필터', 'Navigation', '목록과 그리드 보기 전환'],
-  ['LoadingButton', 'Loading Button', '로딩', 'Feedback', '저장 중 상태와 완료 피드백을 확인하세요'],
+  ['HoverButton', 'Hover Button', '버튼', 'Button', 'Hover 기본 버튼'],
+  ['SocialButton', 'Social Button', '버튼', 'Button', '소셜미디어 기본 버튼'],
 ]
 
 const samples = definitions.map(([id, name, category, tag, description]) => ({

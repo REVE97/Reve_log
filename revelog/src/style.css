@@ -3929,6 +3929,7 @@ h1 {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
+  align-items: start;
 }
 
 .sample-workspace .sample-pagination {
@@ -3979,6 +3980,8 @@ h1 {
 }
 
 .sample-workspace .sample-card {
+  display: flex;
+  flex-direction: column;
   border: 1px solid #dfe0df;
   border-radius: 7px;
   overflow: hidden;
@@ -3990,6 +3993,8 @@ h1 {
 }
 
 .sample-workspace .card-demo {
+  flex: 0 0 240px;
+  height: 240px;
   padding: 8px 12px 12px;
   display: flex;
   flex-direction: column;
@@ -3997,6 +4002,7 @@ h1 {
 }
 
 .sample-workspace .card-demo-toolbar {
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -4030,14 +4036,23 @@ h1 {
 }
 
 .sample-workspace .card-demo-content {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 128px;
+  min-width: 0;
+  min-height: 0;
   padding: 12px 0;
 }
 
+.sample-workspace .card-demo-content > * {
+  flex-shrink: 0;
+  max-width: 100%;
+  margin: 0;
+}
+
 .sample-workspace .card-caption {
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -4241,10 +4256,6 @@ h1 {
 
   .sample-workspace .sample-grid {
     grid-template-columns: 1fr;
-  }
-
-  .sample-workspace .card-demo {
-    min-height: 155px;
   }
 
   .sample-workspace .card-caption {
