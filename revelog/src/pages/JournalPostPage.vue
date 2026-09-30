@@ -10,7 +10,8 @@
         class="journal-back-link"
         :to="`/${collection}`"
       >
-        ← 목록으로
+        <span class="icon icon-chevron-left" aria-hidden="true"></span>
+        목록으로
       </RouterLink>
     </header>
     <div
@@ -70,7 +71,10 @@
         </aside>
       </div>
       <footer class="document-footer">
-        <RouterLink :to="`/${collection}`">← {{ config.title }} 목록</RouterLink>
+        <RouterLink class="journal-footer-back-link" :to="`/${collection}`">
+          <span class="icon icon-chevron-left" aria-hidden="true"></span>
+          {{ config.title }} 목록
+        </RouterLink>
         <span>REVE / NOTES</span>
       </footer>
     </div>

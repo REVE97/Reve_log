@@ -3597,19 +3597,6 @@ h1 {
   background: #fcfcfb;
 }
 
-.format-bold {
-  font-weight: 750;
-}
-
-.format-italic {
-  font-family: Georgia, serif;
-  font-style: italic;
-}
-
-.format-strike {
-  text-decoration: line-through;
-}
-
 .markdown-color-control {
   position: static;
 }
@@ -3618,13 +3605,15 @@ h1 {
   gap: 4px;
 }
 
-.markdown-color-button > span {
-  line-height: 1.2;
+.markdown-color-indicator {
+  display: inline-flex;
+  padding-bottom: 2px;
   border-bottom: 3px solid;
 }
 
-.markdown-color-button small {
-  font-size: 12px;
+.markdown-color-button > .icon-chevron-down {
+  width: 12px;
+  height: 12px;
 }
 
 .markdown-color-palette {
@@ -4261,4 +4250,56 @@ h1 {
   .sample-workspace .source-code {
     font-size: 11px;
   }
+}
+
+/* Navigation and editor SVG icons */
+.icon-chevron-left {
+  --icon-source: url('./assets/icon-chevron-left.svg');
+}
+
+.icon-chevron-up {
+  --icon-source: url('./assets/icon-chevron-up.svg');
+}
+
+.icon-chevron-down {
+  --icon-source: url('./assets/icon-chevron-down.svg');
+}
+
+.icon-check {
+  --icon-source: url('./assets/icon-check.svg');
+}
+
+.icon-editor-color {
+  --icon-source: url('./assets/icon-editor-color.svg');
+}
+
+.icon-editor-bold {
+  --icon-source: url('./assets/icon-editor-bold.svg');
+}
+
+.icon-editor-italic {
+  --icon-source: url('./assets/icon-editor-italic.svg');
+}
+
+.icon-editor-strike {
+  --icon-source: url('./assets/icon-editor-strike.svg');
+}
+
+.journal-back-link,
+.journal-footer-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.journal-back-link .icon,
+.journal-footer-back-link .icon,
+.markdown-metadata-action .icon {
+  width: 14px;
+  height: 14px;
+}
+
+.markdown-color-swatches .icon-check {
+  width: 16px;
+  height: 16px;
 }

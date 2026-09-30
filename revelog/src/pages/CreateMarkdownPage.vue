@@ -83,7 +83,11 @@
             <button type="button" class="markdown-metadata-toggle" :aria-expanded="metadataOpen" aria-controls="markdown-metadata" @click="metadataOpen = !metadataOpen">
               <span id="metadata-heading"><b>01</b> 글 정보</span>
               <span class="markdown-metadata-summary"><strong>{{ form.title || '글 정보를 입력해 주세요' }}</strong><small>{{ collection }} · {{ form.category }} · {{ form.date }}</small></span>
-              <span class="markdown-metadata-action">{{ metadataOpen ? '접기' : '수정' }} <span aria-hidden="true">{{ metadataOpen ? '⌃' : '⌄' }}</span></span>
+              <span class="markdown-metadata-action">{{ metadataOpen ? '접기' : '수정' }} <span
+                class="icon"
+                :class="metadataOpen ? 'icon-chevron-up' : 'icon-chevron-down'"
+                aria-hidden="true"
+              ></span></span>
             </button>
             <div v-show="metadataOpen" id="markdown-metadata" class="markdown-fields markdown-metadata-fields">
               <label class="markdown-field is-full">
@@ -164,13 +168,26 @@
             <label for="markdown-body-editor" class="markdown-body-label">내용 *</label>
             <div class="markdown-editor-shell">
               <div class="markdown-format-toolbar" role="group" aria-label="본문 서식" @pointerdown.prevent @keydown.esc="closeColorPalette">
-                <button v-for="tool in formattingTools" :key="tool.action" type="button" :title="tool.title" :aria-label="tool.title" :class="['markdown-format-button', `format-${tool.action}`]" @click="applyFormat(tool.action)">{{ tool.label }}</button>
+                <button v-for="tool in formattingTools" :key="tool.action" type="button" :title="tool.title" :aria-label="tool.title" :class="['markdown-format-button', `format-${tool.action}`]" @click="applyFormat(tool.action)">
+                  <span
+                    v-if="tool.icon"
+                    class="icon"
+                    :class="tool.icon"
+                    aria-hidden="true"
+                  ></span>
+                  <template v-else>{{ tool.label }}</template>
+                </button>
                 <div ref="colorControl" class="markdown-color-control">
-                  <button ref="colorButton" type="button" class="markdown-format-button markdown-color-button" aria-label="글자색" :aria-expanded="colorOpen" aria-controls="markdown-color-palette" @click="colorOpen = !colorOpen"><span :style="{ borderColor: currentColor }">A</span><small aria-hidden="true">⌄</small></button>
+                  <button ref="colorButton" type="button" class="markdown-format-button markdown-color-button" aria-label="글자색" :aria-expanded="colorOpen" aria-controls="markdown-color-palette" @click="colorOpen = !colorOpen"><span class="markdown-color-indicator" :style="{ borderColor: currentColor }" aria-hidden="true">
+                    <span class="icon icon-editor-color"></span>
+                  </span>
+                  <span class="icon icon-chevron-down" aria-hidden="true"></span></button>
                   <div v-if="colorOpen" id="markdown-color-palette" class="markdown-color-palette" role="group" aria-label="글자색 선택">
                     <strong>글자색</strong>
                     <div class="markdown-color-swatches">
-                      <button v-for="color in textColors" :key="color.value" type="button" :style="{ '--swatch-color': color.value }" :aria-label="color.name" :aria-pressed="currentColor === color.value" :title="color.name" @click="applyColor(color.value)"><span aria-hidden="true">{{ currentColor === color.value ? '✓' : '' }}</span></button>
+                      <button v-for="color in textColors" :key="color.value" type="button" :style="{ '--swatch-color': color.value }" :aria-label="color.name" :aria-pressed="currentColor === color.value" :title="color.name" @click="applyColor(color.value)"><span aria-hidden="true">
+                        <span v-if="currentColor === color.value" class="icon icon-check"></span>
+                      </span></button>
                     </div>
                     <button type="button" class="markdown-color-reset" @click="applyColor(null)">기본색으로 되돌리기</button>
                   </div>
@@ -315,9 +332,9 @@ let beforeInput = null
 const formattingTools = [
   { action: 'h2', label: '제목', title: '제목 적용 (H2)' },
   { action: 'h3', label: '부제목', title: '부제목 적용 (H3)' },
-  { action: 'bold', label: 'B', title: '굵게 (Ctrl/⌘ B)' },
-  { action: 'italic', label: 'I', title: '기울임 (Ctrl/⌘ I)' },
-  { action: 'strike', label: 'S', title: '취소선' },
+  { action: 'bold', icon: 'icon-editor-bold', title: '굵게 (Ctrl/⌘ B)' },
+  { action: 'italic', icon: 'icon-editor-italic', title: '기울임 (Ctrl/⌘ I)' },
+  { action: 'strike', icon: 'icon-editor-strike', title: '취소선' },
 ]
 function rememberSelection() {
   if (!bodyInput.value) return
