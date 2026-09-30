@@ -47,7 +47,6 @@
               @click="category = item"
             >
               {{ item }}
-              <span v-if="item === '전체'">{{ samples.length }}</span>
             </button>
           </div>
 
@@ -242,6 +241,8 @@ const reactSources = import.meta.glob('../data/samples/*.jsx', {
 const definitions = [
   ['HoverButton', 'Hover Button', '버튼', 'Button', 'Hover 기본 버튼'],
   ['SocialButton', 'Social Button', '버튼', 'Button', '소셜미디어 기본 버튼'],
+  ['FormInput', 'Form Input', '인풋', 'Input', 'Form 기본 인풋'],
+  ['MessageInput', 'Message Input', '인풋', 'Input', '메시지 및 파일첨부 기본 인풋']
 ]
 
 const samples = definitions.map(([id, name, category, tag, description]) => ({
@@ -255,10 +256,10 @@ const samples = definitions.map(([id, name, category, tag, description]) => ({
   reactSource: reactSources[`../data/samples/${id}.jsx`],
 }))
 
-const categories = ['전체', '버튼', '검색창', '필터', '토글', '로딩']
+const categories = ['전체', '버튼', '인풋', '필터', '토글', '로딩']
 const query = ref('')
 const category = ref('전체')
-const pageSize = 6
+const pageSize = 4
 const currentPage = ref(1)
 const selectedId = ref(samples[0].id)
 const selected = computed(() =>
