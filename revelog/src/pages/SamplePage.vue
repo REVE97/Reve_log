@@ -149,13 +149,6 @@
             >
               다음
             </button>
-            <span
-              class="sample-pagination-status"
-              aria-live="polite"
-              aria-atomic="true"
-            >
-              {{ currentPage }} / {{ totalPages }} 페이지
-            </span>
           </nav>
         </section>
 

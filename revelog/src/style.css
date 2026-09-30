@@ -3953,13 +3953,6 @@ h1 {
   cursor: not-allowed;
 }
 
-.sample-workspace .sample-pagination-status {
-  flex-basis: 100%;
-  text-align: center;
-  color: var(--color-subtext);
-  font-size: 11px;
-}
-
 .sample-workspace .sample-card {
   display: flex;
   flex-direction: column;
