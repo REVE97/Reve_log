@@ -2810,10 +2810,6 @@ h1 {
 
 /* Labs: 이미지 PDF 만들기 */
 
-.icon-upload {
-  --icon-source: url('./assets/icon-upload.svg');
-}
-
 .icon-plus {
   --icon-source: url('./assets/icon-plus.svg');
 }
@@ -2836,10 +2832,6 @@ h1 {
 
 .icon-arrow-down {
   --icon-source: url('./assets/icon-arrow-down.svg');
-}
-
-.icon-lock {
-  --icon-source: url('./assets/icon-lock.svg');
 }
 
 .icon-eye {
