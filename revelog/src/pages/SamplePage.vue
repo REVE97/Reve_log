@@ -242,7 +242,8 @@ const definitions = [
   ['HoverButton', 'Hover Button', '버튼', 'Button', 'Hover 기본 버튼'],
   ['SocialButton', 'Social Button', '버튼', 'Button', '소셜미디어 기본 버튼'],
   ['FormInput', 'Form Input', '인풋', 'Input', 'Form 기본 인풋'],
-  ['MessageInput', 'Message Input', '인풋', 'Input', '메시지 및 파일첨부 기본 인풋']
+  ['MessageInput', 'Message Input', '인풋', 'Input', '메시지 및 파일첨부 기본 인풋'],
+  ['DefaultLoading', 'Defalut Loading', '로딩', 'Loading', '기본 로딩 애니메이션 효과']
 ]
 
 const samples = definitions.map(([id, name, category, tag, description]) => ({
