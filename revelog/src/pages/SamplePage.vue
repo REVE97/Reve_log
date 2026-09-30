@@ -231,7 +231,6 @@ const reactSources = import.meta.glob('../data/samples/*/*.jsx', {
 
 // 추가 리스트
 // 입력 순서 : 컴포넌트명, 제목, 필터링 카테고리, 종류명, 설명
-// 파일 위치: data/samples/{카테고리 첫 글자를 소문자로}/{컴포넌트명}.vue (React 코드는 같은 이름의 .jsx)
 const definitions = [
   // Button
   ['HoverButton', 'Hover Button', 'Button', 'Button', 'Hover 기본 버튼'],
@@ -240,9 +239,10 @@ const definitions = [
   // Input
   ['FormInput', 'Form Input', 'Input', 'Input', 'Form 기본 인풋'],
   ['MessageInput', 'Message Input', 'Input', 'Input', '메시지 및 파일첨부 기본 인풋'],
+  ['DarkmodeToggle', 'Darkmode Toggle', 'Input', 'Toggle', '다크모드 토글 1'],
 
   // Animation
-  ['DefaultLoading', 'Defalut Loading', 'Animation', 'Loading', '기본 로딩 애니메이션 효과']
+  ['DefaultLoading', 'Defalut Loading', 'Animation', 'Loading', '기본 로딩 애니메이션 효과'],
 ]
 
 const samples = definitions.map(([id, name, category, tag, description]) => {
