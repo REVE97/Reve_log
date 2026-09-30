@@ -214,16 +214,16 @@ hljs.registerLanguage('xml', xml)
 hljs.registerLanguage('javascript', javascript)
 hljs.registerLanguage('css', css)
 
-const components = import.meta.glob('../data/samples/*.vue', {
+const components = import.meta.glob('../data/samples/*/*.vue', {
   eager: true,
   import: 'default',
 })
-const sources = import.meta.glob('../data/samples/*.vue', {
+const sources = import.meta.glob('../data/samples/*/*.vue', {
   eager: true,
   query: '?raw',
   import: 'default',
 })
-const reactSources = import.meta.glob('../data/samples/*.jsx', {
+const reactSources = import.meta.glob('../data/samples/*/*.jsx', {
   eager: true,
   query: '?raw',
   import: 'default',
@@ -231,26 +231,37 @@ const reactSources = import.meta.glob('../data/samples/*.jsx', {
 
 // 추가 리스트
 // 입력 순서 : 컴포넌트명, 제목, 필터링 카테고리, 종류명, 설명
+// 파일 위치: data/samples/{카테고리 첫 글자를 소문자로}/{컴포넌트명}.vue (React 코드는 같은 이름의 .jsx)
 const definitions = [
-  ['HoverButton', 'Hover Button', '버튼', 'Button', 'Hover 기본 버튼'],
-  ['SocialButton', 'Social Button', '버튼', 'Button', '소셜미디어 기본 버튼'],
-  ['FormInput', 'Form Input', '인풋', 'Input', 'Form 기본 인풋'],
-  ['MessageInput', 'Message Input', '인풋', 'Input', '메시지 및 파일첨부 기본 인풋'],
-  ['DefaultLoading', 'Defalut Loading', '로딩', 'Loading', '기본 로딩 애니메이션 효과']
+  // Button
+  ['HoverButton', 'Hover Button', 'Button', 'Button', 'Hover 기본 버튼'],
+  ['SocialButton', 'Social Button', 'Button', 'Button', '소셜미디어 기본 버튼'],
+
+  // Input
+  ['FormInput', 'Form Input', 'Input', 'Input', 'Form 기본 인풋'],
+  ['MessageInput', 'Message Input', 'Input', 'Input', '메시지 및 파일첨부 기본 인풋'],
+
+  // Animation
+  ['DefaultLoading', 'Defalut Loading', 'Animation', 'Loading', '기본 로딩 애니메이션 효과']
 ]
 
-const samples = definitions.map(([id, name, category, tag, description]) => ({
-  id,
-  name,
-  category,
-  tag,
-  description,
-  component: components[`../data/samples/${id}.vue`],
-  source: sources[`../data/samples/${id}.vue`],
-  reactSource: reactSources[`../data/samples/${id}.jsx`],
-}))
+const samples = definitions.map(([id, name, category, tag, description]) => {
+  const directory = category.charAt(0).toLowerCase() + category.slice(1)
+  const path = `../data/samples/${directory}/${id}`
 
-const categories = ['전체', '버튼', '인풋', '필터', '토글', '로딩']
+  return {
+    id,
+    name,
+    category,
+    tag,
+    description,
+    component: components[`${path}.vue`],
+    source: sources[`${path}.vue`],
+    reactSource: reactSources[`${path}.jsx`],
+  }
+})
+
+const categories = ['전체', 'Button', 'Input', 'Animation']
 const query = ref('')
 const category = ref('전체')
 const pageSize = 4
