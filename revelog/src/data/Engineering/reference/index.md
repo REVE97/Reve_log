@@ -27,6 +27,7 @@ cover: ./reference.png # 썸네일 이미지
 ---
 
 ## UI Sampling
-
+[사이트 이동하기](https://reve-log.vercel.app/labs/sample)
+- 프론트개발 중 자주 사용하게 되는 UI 컴포넌트 정리
 
 ---
