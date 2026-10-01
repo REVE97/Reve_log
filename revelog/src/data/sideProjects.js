@@ -99,34 +99,34 @@ export const sideProjects = [
     overview: [
       '경력기술서와 사이드 프로젝트 포트폴리오를 한곳에서 관리합니다.',
       'TIL, 트러블슈팅, 개발일지를 Markdown과 이미지로 기록하여 구현 결과와 학습 과정을 함께 보여줍니다.',
+      'Labs에서는 Markdown 작성과 이미지 PDF 변환 도구를 제공하고, UI 컴포넌트 샘플의 동작과 코드를 함께 살펴볼 수 있습니다.',
     ],
     overviewHighlight:
-      '글별 폴더에 Markdown과 이미지를 추가하면 목록과 상세 페이지에 자동 반영되어, 화면 코드를 수정하지 않고 개발 기록을 축적할 수 있습니다.',
+      'Markdown과 이미지를 추가하면 개발 기록이 목록과 상세 페이지에 자동 반영됩니다. Labs의 문서 도구와 UI 샘플로 기록 작성부터 컴포넌트 실험까지 이어갈 수 있습니다.',
     features: [
       {
         icon: 'resume',
-        title: '경력기술서',
-        description: '프로필, 기술 스택, 실무 프로젝트, 학력과 자격증을 구조화하여 제공합니다.',
-      },
-      {
-        icon: 'sideproject',
-        title: '프로젝트 포트폴리오',
-        description: '프로젝트별 소개, 주요 기능, 구현 내용과 서비스 화면을 공통 형식으로 정리합니다.',
+        title: '경력기술서 · 포트폴리오',
+        description:
+          '프로필과 실무 경력, 사이드 프로젝트의 주요 기능 · 구현 내용 · 서비스 화면을 체계적으로 소개합니다.',
       },
       {
         icon: 'engineering',
-        title: 'Engineering',
-        description: 'TIL과 트러블슈팅을 기록하고, 제목 · 본문 · 태그 검색과 유형 필터로 탐색합니다.',
+        title: '개발 기록 · 문서 내보내기',
+        description:
+          'Engineering과 Product Log에서 학습 · 개발 기록을 검색하고 분류합니다. 경력기술서와 포트폴리오는 A4 미리보기와 PDF 저장을 지원합니다.',
       },
       {
-        icon: 'product-log',
-        title: 'Product Log',
-        description: '개발일지와 회고를 날짜별 타임라인으로 제공하고 프로젝트별로 모아 볼 수 있습니다.',
+        icon: 'notice',
+        title: 'Markdown 작성 · 이미지 PDF 변환',
+        description:
+          'Markdown 문서를 작성 · 편집 · 미리 보고 저장하거나, 이미지의 순서와 회전을 조정해 하나의 PDF로 변환합니다.',
       },
       {
-        icon: 'download',
-        title: '문서 미리보기 · PDF 저장',
-        description: '경력기술서와 포트폴리오의 A4 너비를 미리 보고 브라우저 인쇄로 PDF를 저장합니다.',
+        icon: 'labs',
+        title: 'UI 샘플 · 다크 모드',
+        description:
+          'UI 샘플을 직접 조작하고 Vue · CSS와 제공되는 React JSX 코드를 확인합니다. 사이트는 시스템 테마 연동과 라이트 · 다크 모드 설정 저장을 지원합니다.',
       },
     ],
     implementation: [
