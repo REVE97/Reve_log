@@ -10,6 +10,10 @@
         Side Project
       </div>
       <div class="toolbar-actions">
+        <DefaultTooltip
+          label="PDF 내보내기 도움말"
+          content="PDF 내보내기 → 인쇄 대상 ‘PDF로 저장’ · 머리글과 바닥글 해제 권장"
+        />
         <button
           class="button button-secondary"
           :aria-pressed="preview"
@@ -37,7 +41,6 @@
       <strong>A4 · 세로</strong>
       <span>문서 너비 미리보기입니다. 실제 페이지 나눔은 인쇄 화면에서 확인하세요.</span>
     </div>
-    <p class="export-help">PDF 내보내기 → 인쇄 대상 ‘PDF로 저장’ · 머리글과 바닥글 해제 권장</p>
 
     <div class="resume-document sideproject-document">
       <SideProjectCaseStudy
@@ -57,6 +60,7 @@
 
 <script setup>
 import { ref } from 'vue'
+import DefaultTooltip from '../components/DefaultTooltip.vue'
 import SideProjectCaseStudy from '../components/SideProjectCaseStudy.vue'
 import { sideProjects } from '../data/sideProjects'
 

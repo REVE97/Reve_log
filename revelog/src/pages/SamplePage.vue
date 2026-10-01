@@ -235,6 +235,7 @@ const definitions = [
   // Button
   ['HoverButton', 'Hover Button', 'Button', 'Button', 'Hover 기본 버튼'],
   ['SocialButton', 'Social Button', 'Button', 'Button', '소셜미디어 기본 버튼'],
+  ['DefaultTooltip', 'Tooltip Button', 'Button', 'Tooltip', '툴팁 기본'],
 
   // Input
   ['FormInput', 'Form Input', 'Input', 'Input', 'Form 기본 인풋'],
