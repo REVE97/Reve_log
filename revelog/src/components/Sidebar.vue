@@ -131,6 +131,7 @@
         </RouterLink>
       </nav>
     </div>
+    <DarkModeToggle />
     <p class="sidebar-caption">Update / 2026.09.29</p>
   </aside>
 </template>
@@ -140,6 +141,7 @@ import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import logo from '../assets/reve_logo.svg'
 import { sideProjects } from '../data/sideProjects'
+import DarkModeToggle from './DarkModeToggle.vue'
 
 const route = useRoute()
 const isLabs = computed(() => route.path.startsWith('/labs/'))

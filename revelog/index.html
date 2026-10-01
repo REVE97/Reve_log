@@ -2,6 +2,25 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      // 앱이 로드되기 전에 저장된 테마를 적용해 밝은 화면의 깜빡임을 방지
+      ;(() => {
+        let savedTheme = null
+
+        try {
+          savedTheme = localStorage.getItem('revelog-theme')
+        } catch {
+          // 저장소를 사용할 수 없으면 시스템 테마를 사용
+        }
+
+        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)')
+        const theme = savedTheme === 'light' || savedTheme === 'dark'
+          ? savedTheme
+          : systemTheme.matches ? 'dark' : 'light'
+
+        document.documentElement.dataset.theme = theme
+      })()
+    </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="곽효재 · Front-end Developer 경력기술서" />

@@ -4346,3 +4346,95 @@ h1 {
   width: 16px;
   height: 16px;
 }
+
+/* 다크 모드 */
+@media screen {
+  :root[data-theme='light'] {
+    color-scheme: light;
+  }
+
+  :root[data-theme='dark'] {
+    color-scheme: dark;
+
+    --color-bg: #15181d;
+    --color-surface: #1c2026;
+    --color-surface-subtle: #20252c;
+    --color-surface-muted: #222830;
+    --color-surface-inset: #252b34;
+    --color-surface-hover: #303844;
+    --color-surface-cool: #222a34;
+    --color-surface-accent: #2b3543;
+    --color-surface-gallery: #252330;
+
+    --color-text: #e6e8ec;
+    --color-text-body: #d3d8e0;
+    --color-text-secondary: #b8c0cc;
+    --color-text-muted: #aab5c4;
+    --color-subtext: #aab5c4;
+    --color-text-faint: #aab5c4;
+    --color-text-disabled: #768191;
+    --color-text-placeholder: #aab5c4;
+    --color-heading: #d3def0;
+
+    --color-accent-text: #adc2df;
+    --color-action-bg: #435873;
+    --color-action-hover: #506987;
+    --color-action-text: #ffffff;
+    --color-sample-bg: #f4f3f1;
+    --color-sample-text: #242628;
+    --color-secondary: var(--color-accent-text);
+    --color-secondary-hover: #c6d7ee;
+    --color-accent-muted: #aab5c4;
+    --color-link: #adc2df;
+    --color-on-accent: var(--color-action-text);
+
+    --color-border: #343d49;
+    --color-border-control: #7b8ba1;
+    --color-border-strong: #8797ac;
+    --color-border-contrast: #8797ac;
+    --color-border-accent: #788da8;
+    --color-border-active: #adc2df;
+    --color-border-gallery: #484355;
+    --color-scrollbar: #77879c;
+
+    --color-error: #f1b2a7;
+    --color-error-bg: #342724;
+    --color-error-border: #aa756b;
+
+    --color-syntax-keyword: #d7ace2;
+    --color-syntax-string: #a3d5b7;
+    --color-syntax-comment: #aab5c4;
+    --color-syntax-title: #a8cef2;
+    --color-syntax-number: #e5bc98;
+    --color-syntax-tag: #efb0a9;
+
+    --color-shadow-subtle: #00000026;
+    --color-shadow-overlay: #00000066;
+  }
+
+  :root[data-theme='dark'] .nav-item.router-link-active,
+  :root[data-theme='dark'] .button-primary,
+  :root[data-theme='dark'] .journal-filters button[aria-pressed='true'],
+  :root[data-theme='dark'] .sample-workspace .categories button[aria-pressed='true'],
+  :root[data-theme='dark'] .sample-workspace .sample-pagination button[aria-current='page'] {
+    background: var(--color-action-bg);
+    color: var(--color-action-text);
+  }
+
+  :root[data-theme='dark'] .button-primary:hover,
+  :root[data-theme='dark'] .sample-workspace .sample-pagination button[aria-current='page']:hover {
+    background: var(--color-action-hover);
+  }
+
+  :root[data-theme='dark'] .sample-workspace .card-demo-content {
+    color-scheme: light;
+    background: var(--color-sample-bg);
+    color: var(--color-sample-text);
+  }
+}
+
+@media print {
+  :root {
+    color-scheme: light;
+  }
+}
