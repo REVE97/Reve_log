@@ -236,6 +236,7 @@ const definitions = [
   ['HoverButton', 'Hover Button', 'Button', 'Button', 'Hover 기본 버튼'],
   ['SocialButton', 'Social Button', 'Button', 'Button', '소셜미디어 기본 버튼'],
   ['DefaultTooltip', 'Tooltip Button', 'Button', 'Tooltip', '툴팁 기본'],
+  ['HoverBackButton', 'Hover Back Button', 'Button', 'Button', 'Hover 기본 뒤로 가기 버튼 (뒤로 이동하는 동작은 직접 구현 필요)'],
 
   // Input
   ['FormInput', 'Form Input', 'Input', 'Input', 'Form 기본 인풋'],
