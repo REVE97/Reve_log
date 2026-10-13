@@ -453,7 +453,7 @@ router.push({
 #### Children router 사용법
 >Vue3 프로젝트의 index.js 파일에서 해당 라우트에 **`children`** 속성을 추가해서 사용
 
-- <span style="color: red">**주의사항**</span> : children 속성에서 path 값을 입력할 때 앞에 `/`(루트) 를 입력하게 되면 **루트 라우트**가 되기 때문에 **`/` 를 생략**해야한다. 
+- <span style="color:#963f54">주의사항</span> : children 속성에서 path 값을 입력할 때 앞에 `/`(루트) 를 입력하게 되면 **루트 라우트**가 되기 때문에 **`/` 를 생략**해야한다. 
 ex) path:"/children" -> /main/children (x) /children
 
 - 대규모 프로젝트에서는 **`import.meta.glob`** 를 활용하여 함수를 이용하여 라우터 경로를 설정한다.

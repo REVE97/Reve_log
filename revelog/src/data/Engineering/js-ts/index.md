@@ -9,7 +9,7 @@ cover: ./js,ts.png # 썸네일 이미지
 
 ## 📘 JavaScript
 
-### <span style="color: red;">Array Method</span>
+### <span style="color:#963f54">Array Method</span>
 
 #### map()
 >원본 배열의 **각 요소를 하나씩 바꿔서 새로운 배열을 만드는** 메서드
@@ -476,7 +476,7 @@ navigator.geolocation.getCurrentPosition(pos => {
 ---
 
 
-### <span style="color: red">`navigator.mediaDevices`</span>
+### <span style="color:#963f54">navigator.mediaDevices</span>
 >**미디어 장치를 접근** 할때 사용하는 인터페이스
 
 - 브라우저가 **사용자의 미디어 장치를 관리/제어**할 수 있도록 제공
