@@ -246,6 +246,7 @@ const definitions = [
 
   // Animation
   ['DefaultLoading', 'Default Loading', 'Animation', 'Loading', '기본 로딩 애니메이션 효과'],
+  ['DefaultFlipBack', "Default Flip Back", 'Animation', 'Flip Back', '기본 카드 뒤집는 애니메이션 효과']
 ]
 
 const samples = definitions.map(([id, name, category, tag, description]) => {
