@@ -61,7 +61,7 @@ export const experience = [
         summary: 'Vue 버전 업그레이드 및 Webpack · Babel → Vite 전환',
         details: [
           '천재교과서(밀크티아이) · 해법에듀 상용 교육 화상 서비스 솔루션의 프론트엔드 마이그레이션 담당',
-          'cocopen · cocosem 등 상용 화상 서비스의 자료 공유, 화이트보드, 화면 공유 기능 개선 및 유지보수',
+          'cocopen · cocosem 등 상용 화상 서비스의 Websocket을 이용한 자료 공유, 화이트보드, 화면 공유 기능 개선 및 유지보수',
           '개발 서버 및 TB 서버 · 운영 서버 빌드 시간 개선',
         ],
         links: [
