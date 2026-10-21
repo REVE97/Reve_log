@@ -242,7 +242,7 @@ const definitions = [
   ['FormInput', 'Form Input', 'Input', 'Input', 'Form 기본 인풋'],
   ['MessageInput', 'Message Input', 'Input', 'Input', '메시지 및 파일첨부 기본 인풋'],
   ['DarkmodeToggle', 'Darkmode Toggle', 'Input', 'Toggle', '다크모드 토글 1'],
-  ['DefaultCheckbox', 'Default Checkbox', 'Input', 'Checkobx', '기본 체크박스'],
+  ['DefaultCheckbox', 'Default Checkbox', 'Input', 'Checkbox', '기본 체크박스'],
 
   // Animation
   ['DefaultLoading', 'Default Loading', 'Animation', 'Loading', '기본 로딩 애니메이션 효과'],
