@@ -229,7 +229,7 @@ const reactSources = import.meta.glob('../data/samples/*/*.jsx', {
   import: 'default',
 })
 
-// 추가 리스트
+// 샘플 추가 리스트
 // 입력 순서 : 컴포넌트명, 제목, 필터링 카테고리, 종류명, 설명
 const definitions = [
   // Button
