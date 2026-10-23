@@ -43,16 +43,21 @@ export const experience = [
         skills: ['Vue 3', 'Pinia', 'REST API'],
       },
       {
-        id: 'system-check',
+        id: 'system-management',
         period: '2026.01 - Present',
-        title: '상용 서비스 운영 모니터링 및 시스템 체크',
-        summary: '상용 서비스의 서버 · 애플리케이션 상태 모니터링 및 정기 시스템 점검 수행',
+        title: 'WebRTC 기반 실시간 화상회의 서비스 운영 및 유지보수',
+        summary: 'WebRTC · WebSocket 기반 상용 화상회의 서비스의 기능 개선, 유지보수 및 시스템 운영 모니터링',
         details: [
-          '해법에듀 · 스미세이케미칼 등 상용 서비스 및 솔루션의 운영 상태를 정기적으로 점검하고 일일 · 월간 운영 리포트 작성',
-          'Linux 서버의 CPU · Memory · Disk 사용량, 프로세스 상태 및 애플리케이션 로그를 확인하여 시스템 이상 징후와 장애 발생 가능 요소 사전 점검',
-          'AWS CloudWatch 기반 서버 · 애플리케이션 모니터링 지표를 확인하고 시스템 상태 및 이상 징후를 시각화하여 운영 현황 관리'
+          '천재교과서 · 해법에듀의 WebRTC · WebSocket 기반 실시간 교육 화상회의 서비스 기능 오류 분석, UI/UX 개선 및 유지보수 수행',
+          'Linux 서버 및 AWS CloudWatch 모니터링 지표를 활용한 시스템 상태 분석과 장애 징후 점검',
+          '상용 교육 화상회의 서비스의 운영 상태 정기 점검 및 일일 · 월간 운영 리포트 작성'
         ],
-        skills: ['Linux', 'AWS CloudWatch']
+        links: [
+          { label: '밀크티아이', url: 'https://i.milkt.co.kr/' },
+          { label: 'cocopen', url: 'https://cocopen.net' },
+          { label: 'cocosem', url: 'https://sem.cococall.net/' },
+        ],
+        skills: ['Vue', 'JavaScript', 'TypeScript', 'WebRTC', 'WebSocket', 'Linux', 'AWS CloudWatch']
       },
       {
         id: 'migration',
@@ -60,14 +65,8 @@ export const experience = [
         title: '교육 화상 서비스 마이그레이션',
         summary: 'Vue 버전 업그레이드 및 Webpack · Babel → Vite 전환',
         details: [
-          '천재교과서(밀크티아이) · 해법에듀 상용 교육 화상 서비스 솔루션의 프론트엔드 마이그레이션 담당',
-          'cocopen · cocosem 등 상용 화상 서비스의 Websocket을 이용한 자료 공유, 화이트보드, 화면 공유 기능 개선 및 유지보수',
-          '개발 서버 및 TB 서버 · 운영 서버 빌드 시간 개선',
-        ],
-        links: [
-          { label: '밀크티아이', url: 'https://i.milkt.co.kr/' },
-          { label: 'cocopen', url: 'https://cocopen.net' },
-          { label: 'cocosem', url: 'https://sem.cococall.net/' },
+          '천재교과서 · 해법에듀 상용 교육 화상 서비스 솔루션의 프론트엔드 마이그레이션 담당',
+          '상용 화상회의 서비스의 개발 서버 및 TB 서버 · 운영 서버 빌드 시간 개선',
         ],
         outcome: { value: '약 94%', label: '빌드 효율 향상' },
         skills: ['Vue', 'Vite', 'Webpack', 'Babel'],
@@ -81,8 +80,9 @@ export const experience = [
         details: [
           '로그인, 화상회의 생성 · 참가, 채팅, API 호출 정상 여부 등 주요 사용자 시나리오 자동 검증',
           '시스템 체크 반복 업무 시간 감소 및 오류 로그 생성 · 시각화 산출물 제공',
+          '사내 SSH 서버 기반 E2E 테스트 일일 자동 실행 스케줄링 및 Slack 연동 결과 알림 시스템 구축'
         ],
-        skills: ['Playwright', 'E2E'],
+        skills: ['Playwright', 'E2E', 'Slack', '자동화'],
       },
       {
         id: 'service-info',
@@ -91,7 +91,7 @@ export const experience = [
         summary: 'Vue 3 기반 서비스 운영 정보 및 시스템 체크 통합 관리',
         details: [
           '천재교과서 · 해법에듀 서비스별 운영 정보와 시스템 체크 항목을 통합 관리하는 사내 웹페이지 개발',
-          '서비스 URL, 서버 IP · 경로, 운영 환경, 저장소 · 배포 정보와 CPU · Memory · Disk · 로그 · 프로세스 상태 조회 기능 구성',
+          '서비스 URL, 서버 IP · 경로, 운영 환경, 저장소 · 배포 정보 조회 기능 구성',
           '분산된 운영 데이터를 JSON으로 구조화하고 일관된 UI로 제공하여 서비스 정보 탐색 시간과 신규 인력의 업무 파악 부담 감소',
         ],
         skills: ['Vue 3', 'JSON'],
