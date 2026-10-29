@@ -31,16 +31,16 @@ export const experience = [
     projects: [
       {
         id: 'ota',
-        period: '2026.01 — 04',
+        period: '2026.01 — 10',
         title: 'OTA · SUMS / VSOC',
         url: 'https://www.tata-daewoo.com/xenLink/xenLink_1',
-        summary: '상용차 차량 관리 플랫폼 프론트엔드 개발',
+        summary: '타타대우 상용 차량 이벤트 데이터 관리 플랫폼 프론트엔드 개발',
         details: [
-          '타타대우모빌리티 XENLINK 연동 차량 관리 플랫폼의 VSOC 파트 프론트엔드 개발 담당',
+          '타타대우모빌리티 XENLINK 연동 차량 관리 플랫폼 VSOC 파트 프론트엔드 개발 담당',
           'Vue 3 기반 실시간 차량 이벤트 데이터 조회 및 시각화 UI 구현',
           'REST API 연동 및 Pinia를 활용한 차량 이벤트 데이터 상태 관리 구현',
         ],
-        skills: ['Vue 3', 'Pinia', 'REST API'],
+        skills: ['Vue', 'Pinia', 'REST API'],
       },
       {
         id: 'system-management',
