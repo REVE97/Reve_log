@@ -37,7 +37,7 @@ export const experience = [
         summary: '타타대우 상용 차량 이벤트 데이터 관리 플랫폼 프론트엔드 개발',
         details: [
           '타타대우모빌리티 XENLINK 연동 차량 관리 플랫폼 VSOC 파트 프론트엔드 개발 담당',
-          'Vue 3 기반 실시간 차량 이벤트 데이터 조회 및 시각화 UI 구현',
+          'Vue 기반 실시간 차량 이벤트 데이터 조회 및 시각화 UI 구현',
           'REST API 연동 및 Pinia를 활용한 차량 이벤트 데이터 상태 관리 구현',
         ],
         skills: ['Vue', 'Pinia', 'REST API'],
@@ -88,13 +88,13 @@ export const experience = [
         id: 'service-info',
         period: '2026.07 — Present',
         title: '사내 서비스 정보 관리 웹페이지',
-        summary: 'Vue 3 기반 서비스 운영 정보 및 시스템 체크 통합 관리',
+        summary: 'Vue 기반 서비스 운영 정보 및 시스템 체크 통합 관리',
         details: [
-          '천재교과서 · 해법에듀 서비스별 운영 정보와 시스템 체크 항목을 통합 관리하는 사내 웹페이지 개발',
-          '서비스 URL, 서버 IP · 경로, 운영 환경, 저장소 · 배포 정보 조회 기능 구성',
-          '분산된 운영 데이터를 JSON으로 구조화하고 일관된 UI로 제공하여 서비스 정보 탐색 시간과 신규 인력의 업무 파악 부담 감소',
+          '천재교과서 · 해법에듀, 날리지톡 서비스별 운영 정보와 시스템 체크 항목을 통합 관리하는 사내 웹페이지 개발',
+          '서비스별 서버 정보 조회 기능, 서비스 모니터링 체크 메뉴얼 정보 조회 기능 제공',
+          'Vue + TypeScript 기반 Feature Based Design 패턴으로 최적화된 프론트엔드 프로젝트 구조 구축',
         ],
-        skills: ['Vue 3', 'JSON'],
+        skills: ['Vue', 'TypeScript', 'JSON'],
       }
     ],
   },
