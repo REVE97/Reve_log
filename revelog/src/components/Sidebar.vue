@@ -132,7 +132,7 @@
       </nav>
     </div>
     <DarkModeToggle />
-    <p class="sidebar-caption">Update / 2026.10.01</p>
+    <p class="sidebar-caption">Update / 2026.10.29</p>
   </aside>
 </template>
 
