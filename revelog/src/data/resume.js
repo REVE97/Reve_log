@@ -73,16 +73,16 @@ export const experience = [
       },
       {
         id: 'testing',
-        period: '2026.06 — 07',
+        period: '2026.06 — 11',
         title: '서비스 기능 테스트 자동화',
         url: 'https://reve-log.vercel.app/engineering/lib-playwright',
         summary: '상용 화상회의 서비스의 Playwright 기반 E2E 테스트 구축',
         details: [
           '로그인, 화상회의 생성 · 참가, 채팅, API 호출 정상 여부 등 주요 사용자 시나리오 자동 검증',
           '시스템 체크 반복 업무 시간 감소 및 오류 로그 생성 · 시각화 산출물 제공',
-          '사내 SSH 서버 기반 E2E 테스트 일일 자동 실행 스케줄링 및 Slack 연동 결과 알림 시스템 구축'
+          '사내 AWS 서버와 SSH 연경을 통해 E2E 테스트 cron 일일 자동 실행 스케줄링 및 Slack 연동 결과 알림 시스템 구축'
         ],
-        skills: ['Playwright', 'E2E', 'Slack', '자동화'],
+        skills: ['SSH', 'Cron', 'Playwright', 'E2E', 'Slack', '자동화'],
       },
       {
         id: 'service-info',
