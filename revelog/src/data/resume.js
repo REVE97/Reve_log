@@ -80,7 +80,7 @@ export const experience = [
         details: [
           '로그인, 화상회의 생성 · 참가, 채팅, API 호출 정상 여부 등 주요 사용자 시나리오 자동 검증',
           '시스템 체크 반복 업무 시간 감소 및 오류 로그 생성 · 시각화 산출물 제공',
-          '사내 AWS 서버와 SSH 연경을 통해 E2E 테스트 cron 일일 자동 실행 스케줄링 및 Slack 연동 결과 알림 시스템 구축'
+          '사내 AWS 서버와 SSH 연결을 통해 E2E 테스트를 cron 일일 자동 실행 스케줄링 및 Slack 연동 결과 알림 시스템 구축'
         ],
         skills: ['SSH', 'Cron', 'Playwright', 'E2E', 'Slack', '자동화'],
       },
