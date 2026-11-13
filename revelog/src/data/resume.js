@@ -49,7 +49,7 @@ export const experience = [
         summary: 'WebRTC · WebSocket 기반 상용 화상회의 서비스의 기능 개선, 유지보수 및 시스템 운영 모니터링',
         details: [
           '천재교과서 · 해법에듀의 WebRTC · WebSocket 기반 실시간 교육 화상회의 서비스 기능 오류 분석, UI/UX 개선 및 유지보수 수행',
-          'Linux 서버 및 AWS CloudWatch 모니터링 지표를 활용한 시스템 상태 분석과 장애 징후 점검',
+          'SSH 기반 AWS EC2 원격 접속을 통해 Linux 서버 운영 및 유지보수 + AWS CloudWatch 모니터링 지표를 활용한 시스템 상태 분석과 장애 징후 점검',
           '상용 교육 화상회의 서비스의 운영 상태 정기 점검 및 일일 · 월간 운영 리포트 작성'
         ],
         links: [
@@ -57,7 +57,7 @@ export const experience = [
           { label: 'cocopen', url: 'https://cocopen.net' },
           { label: 'cocosem', url: 'https://sem.cococall.net/' },
         ],
-        skills: ['Vue', 'JavaScript', 'TypeScript', 'WebRTC', 'WebSocket', 'Linux', 'AWS CloudWatch']
+        skills: ['Vue', 'JavaScript', 'TypeScript', 'WebRTC', 'WebSocket', 'Linux', 'SSH', 'AWS EC2']
       },
       {
         id: 'migration',
@@ -80,9 +80,9 @@ export const experience = [
         details: [
           '로그인, 화상회의 생성 · 참가, 채팅, API 호출 정상 여부 등 주요 사용자 시나리오 자동 검증',
           '시스템 체크 반복 업무 시간 감소 및 오류 로그 생성 · 시각화 산출물 제공',
-          '사내 AWS 서버와 SSH 연결을 통해 E2E 테스트를 cron 일일 자동 실행 스케줄링 및 Slack 연동 결과 알림 시스템 구축'
+          'E2E 테스트를 Linux 서버에서 cron 스케줄링 작업 실행및 Slack 연동 결과 알림 시스템 구축'
         ],
-        skills: ['SSH', 'Cron', 'Playwright', 'E2E', 'Slack', '자동화'],
+        skills: ['Linux', 'Cron', 'Playwright', 'E2E', 'Slack', '자동화'],
       },
       {
         id: 'service-info',
