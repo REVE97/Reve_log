@@ -510,4 +510,38 @@ src/
 
 ---
 
-## 
+## Cron
+>정해진 시간에 작업을 실행하는 프로그램
+
+### Crontab
+>Cron이 실행할 작업과 시간을 기록해 놓는 설정표
+
+- 자주 사용하는 명령어 : 
+`crontab -e` : Crontab 편집 모드
+`crontab -l` : Crontab 읽기 모드
+`crontab -r` : Crontab 전체 삭제
+`systemctl status cron` : Cron 서비스 상태 확인
+`systemctl restart cron` : Cron 서비스 재시작
+
+- 주요 시간 설정 예시 : `0 6 * * * npm run test:all:server`
+순서대로 **분 / 시 / 일 / 월 / 요일 / 실행할 명령어** : 시간대는 **숫자**로 표기, 명령어는 **터미널 명령어** 기준
+
+<Crontab 예시>
+
+```bash
+00 06 * * * 
+cd /home/daily-system-check-playwirght/e2e // 디렉터리로 이동
+&& /usr/bin/npm run test:all:server // 명령어 실행
+>> /home/daily-system-check-playwirght/e2e/cron.log 2>&1 // 표준 출력과 오류 출력을 로그 파일에 누적
+```
+- 자주 사용하는 문법 :
+`>` : 기존 파일 내용을 덮어쓰며 출력
+`>>` : 기존 파일 끝에 출력 내용을 추가
+`2>` : 오류 메시지를 별도로 리다이렉션
+`2>&1` : 표준 오류(2)를 표준 출력(1)과 동일한 위치로 전송
+
+
+### Cron Job
+>Crontab에 등록되어 실제로 실해되는 개별 작업
+
+---
