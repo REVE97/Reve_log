@@ -597,5 +597,4 @@ swapon --show
 Swap:          2.0Gi         0B       2.0Gi
 
 ```
-
 ---
