@@ -49,8 +49,8 @@ export const experience = [
         summary: 'WebRTC · WebSocket 기반 상용 화상회의 서비스의 기능 개선, 유지보수 및 시스템 운영 모니터링',
         details: [
           '천재교과서 · 해법에듀의 WebRTC · WebSocket 기반 실시간 교육 화상회의 서비스 기능 오류 분석, UI/UX 개선 및 유지보수 수행',
+          '상용 교육 화상회의 서비스의 운영 상태 정기 점검 및 일일 · 월간 운영 리포트 작성',
           'SSH 기반 AWS EC2 원격 접속을 통해 Linux 서버 운영 및 유지보수 + AWS CloudWatch 모니터링 지표를 활용한 시스템 상태 분석과 장애 징후 점검',
-          '상용 교육 화상회의 서비스의 운영 상태 정기 점검 및 일일 · 월간 운영 리포트 작성'
         ],
         links: [
           { label: '밀크티아이', url: 'https://i.milkt.co.kr/' },
