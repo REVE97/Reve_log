@@ -7,7 +7,7 @@ summary: "JavaScript, TypeScript 관련 학습 TIL" # 요약
 cover: ./js,ts.png # 썸네일 이미지
 ---
 
-## 📘 JavaScript
+## 📕 JavaScript
 
 ### <span style="color:#963f54">Array Method</span>
 
@@ -435,94 +435,6 @@ console.log(parsedUser.nickname)
 
 ---
 
-### navigator
->**브라우저 환경과 사용자 디바이스 정보를 제공**하는 전역 객체
-
-#### 정의
->`window.navigator`
-
-#### 주요 인터페이스
-- **`navigator.mediaDevices`** : 미디어 장치 접근
-
-```js
-navigator.mediaDevices.getUserMedia()
-navigator.mediaDevices.getDisplayMedia()
-navigator.mediaDevices.enumerateDevices()
-```
-- `navigator.permissions` : 권한 상태 조회
-
-```js
-const status = await navigator.permissions.query({ name: "camera" });
-console.log(status.state); // granted / denied / prompt
-```
-- `navigator.userAgent` : 브라우저 정보
-
-- `navigator.onLine` : 네트워크 상태 확인
-
-```js
-if (!navigator.onLine) {
-  alert("인터넷 연결이 끊어졌습니다.");
-}
-```
-- `navigator.geolocation` : 위치 정보
-
-```js
-navigator.geolocation.getCurrentPosition(pos => {
-  console.log(pos.coords.latitude, pos.coords.longitude);
-});
-
-```
-
----
-
-
-### <span style="color:#963f54">navigator.mediaDevices</span>
->**미디어 장치를 접근** 할때 사용하는 인터페이스
-
-- 브라우저가 **사용자의 미디어 장치를 관리/제어**할 수 있도록 제공
-- HTTPS 환경에서만 동작
-- 주로 화면 공유, **실시간 미디어 스트림(WebRTC)** 생성에 사용
-
-#### mediaDevices 주요 메서드
-- **`getUserMedia()`** : **카메라 / 마이크 스트림**을 요청 -> 성공 시 **`MediaStream`** 반환
-
-```js
-navigator.mediaDevices.getUserMedia(constraints)
-
-const stream = await navigator.mediaDevices.getUserMedia({
-  video: true,
-  audio: true,
-});
-
-videoElement.srcObject = stream;
-
-stream.getTracks();       // 모든 트랙
-stream.getVideoTracks();  // 비디오만
-stream.getAudioTracks();  // 오디오만
-
-stream.getTracks().length; // 보통 2 (audio + video)
-
-stream.getTracks().forEach(track => track.stop()); // MediaStream에 포함된 모든 트랙을 종료
-```
-
-- **`getDisplayMedia()`** : **화면 공유**를 요청 (브라우저 탭 / 전체 화면 / 특정 창)
-
-```js
-const screenStream = await navigator.mediaDevices.getDisplayMedia({
-  video: true,
-  audio: true
-});
-```
-
-### srcObject
->**`<video> , <audio>`** 같은 미디어 태그에 **`MediaStream`** 객체를 직접 연결하기 위한 속성
-
-```js
-<video id="video" autoplay></video>
-
-video.srcObject = stream;
-```
-
 ### nextTick()
 >상태(state) 가 변경되어 **DOM 업데이트가 예약된 뒤**, **실제 DOM 반영이 끝난 다음 시점에 코드를 실행**하기 위한 함수
 
@@ -563,6 +475,75 @@ videoRef.value.srcObject = stream;
 
 await nextTick();
 videoRef.value.play();
+```
+
+---
+
+## 📘 TypeScript
+>`JavaScript` 에 정적 타입 시스템을 추가한 프로그래밍 언어
+대부분의 `JavaScript`의 문법을 사용가능하고 코드가 실행되게 전에 **타입 관련 오류 검사를 진행**함
+
+### 실행 구조
+>`App.ts` - 타입 검사 + JS로 변환(타입 정보 제거) - 브라우저에서 실행
+
+### 타입 검사 예시
+```TypeScript
+let age: number = 25;
+
+age = "스물다섯";
+// Type Error:
+// Type 'string' is not assignable to type 'number'.
+```
+
+### 기본 변수 선언
+>기본적으로 변수명 뒤에 `:`를 붙여서 선언
+
+```TypeScript
+// 문자열
+let userName: string = "Kim";
+
+// 숫자
+let age: number = 29;
+
+// 참 또는 거짓
+let isLoggedIn: boolean = true;
+
+// 배열
+let scores: number[] = [90, 85, 100];
+
+// 문자열 배열
+let skills: string[] = ["React", "Vue", "TypeScript"];
+
+// null
+let selectedUser: null = null;
+
+// undefined
+let result: undefined = undefined;
+
+// any : 기본적으로 javascript에서 변수를 생성한 것과 동일하게 여겨짐
+// 하지만 코드의 안정성이 떨어지고 결과를 예상하기 힘들어지기 때문에 신중하게 사용
+let default: any = { id: "1" };
+
+// unknown : any 타입과 동일하게 변수를 할당하는 것은 동일하지만
+// 변수 할당 이후 변수를 사용하기 위해서는 로직에 적합한 타입을 해당 변수가 가지고 있는지 추가적인 검사를 요구
+let default: unknown = 10;
+
+console.log(num+10); // 에러발생
+
+if (typeof num === "number") {
+  console.log(num+10);
+} // 정상 작동
+```
+
+### 기본 함수 선언
+>기본적으로 함수 선언에서 매개변수 및 함수명 뒤에 `:`를 붙여서 선언
+```TypeScript
+function add(a: number, b: number): number {
+  return a + b;
+}
+
+add(10, 20);     // 정상
+add("10", "20"); // 타입 오류
 ```
 
 ---
