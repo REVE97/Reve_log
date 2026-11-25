@@ -546,4 +546,97 @@ add(10, 20);     // 정상
 add("10", "20"); // 타입 오류
 ```
 
+### 객체, 인터페이스 선언
+>실무 프로젝트에서는 데이터 구조를 주로 인터페이스로 타입 선언 후 객체로 주로 사용
+
+- `interface` 를 활용해 해당 객체의 타입을 미리 설정함
+
+```TypeScript
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  isAdmin: boolean;
+}
+
+// 정상 선언
+const user: User = {
+  id: 1,
+  name: "Kim",
+  email: "kim@test.com",
+  isAdmin: false
+};
+
+// 오류 발생
+const user: User = {
+  id: 1,
+  name: "Kim"
+  // email, isAdmin 속성이 없어 타입 오류
+};
+```
+#### 선택적 ? 속성 사용
+>`email?` 와 같이 속성 뒤에 `?` 를 붙이면 해당 속성은 생략가능
+
+#### readonly 속성 사용
+>해당 변수를 재할당 하지 못하도록 설정
+
+```TypeScript
+interface User {
+  readonly id: number;
+  name: string;
+}
+
+const user: User = {
+  id: 1,
+  name: "Kim"
+};
+
+user.name = "Lee"; // 정상
+
+user.id = 2; // 타입 오류
+```
+
+#### Union | 속성 사용
+>해당 변수에 여러 타입을 허용하고 싶을 때 사용, **interface 으로 선언된 데이터 변수는 사용 불가능**
+
+```TypeScript
+let userId: string | number;
+
+userId = 10;
+userId = "user10";
+userId = true; // 타입 오류
+
+type UserRole = "ADMIN" | "USER" | "GUEST";
+
+let role: UserRole = "ADMIN";
+
+role = "MANAGER"; // 타입 오류
+```
+
+### Generic <T>
+>함수나 객체를 정의하는 시점에 특정 타입을 고정하지 않고, **사용하는 시점에 타입을 지정하거나 추론**하도록 설정
+
+- 주로 API 응답 타입, 공통 함수, 재사용 컴포넌트, 상태 관리 라이브러리 등에서 많이 사용
+- `T` 대신 사용자가 임의로 이름 변경 가능
+
+```TypeScript
+// 일반 함수 (데이터 타입만 다르고 기능은 동일)
+function getNumber(value: number): number {
+  return value;
+}
+
+function getString(value: string): string {
+  return value;
+}
+
+// 제네릭 사용
+function getValue<T>(value: T): T {
+  return value;
+}
+
+const numberValue = getValue<number>(10);
+const stringValue = getValue<string>("hello");
+```
+
+
 ---
