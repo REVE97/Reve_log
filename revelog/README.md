@@ -1,6 +1,6 @@
 # REVE · 경력기술서
 
-Vue 3와 Vite 기반의 반응형 경력기술서입니다. 웜그레이 배경과 네이비 포인트를 사용합니다.
+Vue 3 + TypeScript + Vite 기반의 반응형 경력기술서입니다. 웜그레이 배경과 네이비 포인트를 사용합니다.
 
 ## 실행
 
@@ -10,9 +10,48 @@ npm run dev
 npm run build
 ```
 
+## TypeScript · FSD 구조
+
+Node.js는 Vite 8이 지원하는 `20.19+` 또는 `22.12+`를 사용합니다. 검증 환경은 Node.js 24입니다.
+
+```text
+src/
+├── app/                    # 진입점, 라우터, 공통 레이아웃, 전역 스타일
+├── pages/
+│   ├── home/               # 경력 화면과 전용 데이터
+│   ├── side-project/       # 프로젝트 소개 화면
+│   ├── journal/            # Engineering / Product Log 목록·상세
+│   ├── create-markdown/    # 편집 화면과 문서 생성·편집 로직
+│   ├── images-to-pdf/      # 이미지 PDF 화면과 변환 로직
+│   └── sample/             # 샘플 화면, 수집 모델, examples 원본
+├── features/toggle-theme/ # 테마 전환 UI와 상태
+├── entities/
+│   ├── post/               # 게시글 타입·수집·content 원본
+│   └── side-project/       # 화면·사이드바 공유 데이터와 이미지
+└── shared/                 # 공통 UI, Markdown 처리, 아이콘
+```
+
+- `@/`는 `src/`를 가리킵니다. 페이지·기능·엔티티를 외부에서 가져올 때는 슬라이스의 `index.ts` 공개 API를 사용합니다.
+- 의존 방향은 `app → pages → features → entities → shared`입니다. 같은 레이어의 서로 다른 슬라이스는 직접 참조하지 않습니다. `app`, `shared`는 세그먼트 간 참조를 허용합니다.
+- 한 페이지에서만 사용하는 코드는 해당 페이지의 `ui`, `model`, `lib`에 둡니다. 재사용 요구가 생기면 하위 레이어로 추출합니다.
+- Markdown 파서와 제한된 색상 문법은 `shared/lib/markdown`, 편집 액션은 `pages/create-markdown/lib`에서 관리합니다.
+- 전역 CSS의 선언 순서·클래스·반응형·인쇄 스타일은 유지합니다. 자산을 옮길 때 CSS URL과 템플릿 경로도 함께 수정해야 합니다.
+- `pages/sample/examples`의 Vue 파일은 실행과 소스 표시 양쪽에 쓰입니다. `.jsx` 파일은 React 예시를 표시하는 텍스트 자료이며 런타임 의존성이 아닙니다.
+
+## 검증
+
+```sh
+npm ci
+npm run type-check      # Vue 템플릿을 포함한 엄격 타입 검사
+npm run check:fsd       # 레이어 방향·슬라이스 경계·공개 API 검사
+npm run build          # 위 두 검사 후 Vite 프로덕션 빌드
+```
+
+화면과 기능을 변경한 뒤에는 `npm run dev`로 직접 확인합니다. 글 검색·이미지·목차, Markdown 편집·입출력, 이미지 PDF 생성, 테마 전환과 모바일 레이아웃을 변경 범위에 맞춰 점검합니다. 실제 인쇄 결과는 브라우저 인쇄 화면에서 확인합니다.
+
 ## 내용 수정
 
-`src/data/resume.js`에서 프로필, 기술 스택과 경력을 관리합니다.
+`src/pages/home/model/resume.ts`에서 프로필, 기술 스택과 경력을 관리합니다.
 
 - `profile`: 이름, 생년월일, 직무, 연락처, 소셜 링크, 기술 스택
 - `experience`: 회사 목록. 새 회사를 추가하려면 고유한 `id`와 회사 정보를 추가합니다.
@@ -20,7 +59,7 @@ npm run build
 - 프로젝트의 `url`, `links`, `outcome`은 선택 항목입니다. 성과 수치는 확인된 내용만 입력합니다.
 - 회사와 프로젝트의 `id`는 전체 문서에서 중복되지 않도록 지정합니다.
 
-화면과 인쇄 문서는 같은 데이터를 사용합니다. 디자인은 `src/style.css`에서 수정합니다.
+화면과 인쇄 문서는 같은 데이터를 사용합니다. 디자인은 `src/app/styles/style.css`에서 수정합니다.
 
 ## PDF 저장
 
@@ -31,16 +70,16 @@ npm run build
 
 내비게이션과 버튼은 인쇄에서 제외되며, 프로젝트 단위로 페이지 중간 분리를 피하도록 설정했습니다. 한 페이지보다 긴 프로젝트는 브라우저가 나누어 출력할 수 있습니다. 글꼴과 인쇄 설정에 따라 페이지 수가 달라질 수 있습니다.
 
-**미리보기**는 A4 문서 너비를 참고하는 화면이며 실제 PDF 페이지 나눔을 재현하지 않습니다. 작은 화면에서는 읽기 편하도록 화면 너비에 맞춥니다. PDF 파일을 직접 생성하는 별도 라이브러리는 사용하지 않습니다.
+**미리보기**는 A4 문서 너비를 참고하는 화면이며 실제 PDF 페이지 나눔을 재현하지 않습니다. 작은 화면에서는 읽기 편하도록 화면 너비에 맞춥니다. 경력기술서 내보내기는 브라우저 인쇄를 사용합니다. Labs의 이미지 PDF 만들기는 별도로 `pdf-lib`를 사용합니다.
 
 ## Side Project
 
 `/sideproject`에서 Bandiary와 MOA를 확인할 수 있습니다.
 
-- `src/data/sideProjects.js`: 프로젝트 소개, 기능, 구현 내용, 이미지와 GitHub 링크
-- `src/components/SideProjectCaseStudy.vue`: 프로젝트별 공통 화면
-- `src/style.css`: Resume과 Side Project의 공통·반응형·인쇄 스타일 통합 관리
-- `src/assets/projects/`: Bandiary 첨부 원본 5장과 포트폴리오 PDF에서 추출한 MOA 소개 이미지
+- `src/entities/side-project/model/sideProjects.ts`: 프로젝트 소개, 기능, 구현 내용, 이미지와 GitHub 링크
+- `src/pages/side-project/ui/SideProjectCaseStudy.vue`: 프로젝트별 공통 화면
+- `src/app/styles/style.css`: Resume과 Side Project의 공통·반응형·인쇄 스타일 통합 관리
+- `src/entities/side-project/assets/`: Bandiary 첨부 원본 5장과 포트폴리오 PDF에서 추출한 MOA 소개 이미지
 
 새 프로젝트는 데이터 배열에 추가합니다. 고유한 `id`를 지정하면 사이드바 목차에도 표시됩니다. 이미지 목록은 `screens`, 단일 소개 이미지는 `showcase`로 지정합니다. PDF 저장 시 각 프로젝트는 새 페이지에서 시작하며, 내용이 길면 다음 페이지로 이어집니다. 실제 페이지 나눔은 브라우저 인쇄 화면에서 확인합니다.
 
@@ -54,10 +93,10 @@ npm run build
 
 ### 글과 이미지 추가
 
-`src/data/Engineering` 또는 `src/data/Product Log` 안에 글마다 폴더를 만듭니다.
+`src/entities/post/content/Engineering` 또는 `src/entities/post/content/Product Log` 안에 글마다 폴더를 만듭니다.
 
 ```text
-src/data/
+src/entities/post/content/
 ├── Engineering/
 │   ├── test/
 │   │   ├── index.md
@@ -124,7 +163,7 @@ cover: ./screenshot.png
 
 새 글은 다음 순서로 추가합니다.
 
-1. **페이지 선택**: TIL·Trouble Shooting·기술 분석은 `src/data/Engineering`, 개발일지·사용자 피드백·회고는 `src/data/Product Log`를 선택합니다. 기존 디렉터리의 대소문자와 `Product Log`의 공백은 그대로 유지합니다.
+1. **페이지 선택**: TIL·Trouble Shooting·기술 분석은 `src/entities/post/content/Engineering`, 개발일지·사용자 피드백·회고는 `src/entities/post/content/Product Log`를 선택합니다. 기존 디렉터리의 대소문자와 `Product Log`의 공백은 그대로 유지합니다.
 2. **글 폴더 생성**: 선택한 디렉터리 바로 아래에 `vue-api-error`처럼 고유한 폴더를 만듭니다. Markdown을 분류 디렉터리에 바로 넣거나 글 폴더보다 더 깊이 넣으면 현재 자동 수집 대상이 아닙니다. 글 폴더 하나가 글 하나입니다.
 3. **이미지 복사**: 글 폴더에 대표 이미지와 본문 이미지를 넣습니다. 예: `cover.png`, `error.png`. 이미지가 많으면 글 폴더 안에 `images` 하위 폴더를 만들어도 됩니다.
 4. **Markdown 작성**: 글 폴더 바로 아래에 `index.md` 하나를 만들고 위 예시의 메타데이터와 본문을 작성합니다. 예시 글을 복사했다면 제목·날짜·요약·분류·태그·이미지 경로를 수정합니다.
@@ -138,18 +177,18 @@ npm run build
 
 8. **배포 반영**: Markdown과 이미지 파일을 함께 커밋·푸시하고 기존 배포 과정에서 새 빌드를 배포합니다. Git 자동 배포가 연결되어 있으면 해당 브랜치에 푸시한 뒤 배포 완료를 확인합니다. 연결되어 있지 않으면 기존 수동 배포 절차를 따릅니다. 배포 사이트에서도 새 글의 상세 주소와 이미지를 확인합니다.
 
-`src/data/posts.js`나 라우터에 글을 별도로 등록할 필요는 없습니다. 프로젝트 루트의 `tests` 디렉터리와 테스트 스크립트는 제거했으며, 일상적인 글 추가에는 필요하지 않습니다. `src/lib/markdown.js`는 실제 화면의 Markdown 변환에 사용되므로 유지해야 합니다.
+`src/entities/post/model/posts.ts`나 라우터에 글을 별도로 등록할 필요는 없습니다. `src/shared/lib/markdown/markdown.ts`는 실제 화면의 Markdown 변환에 사용되므로 유지해야 합니다.
 
 웹 관리자·업로드 API·DB는 사용하지 않습니다. 글 파일은 공개 콘텐츠로 취급하며 비공개 자료는 넣지 않습니다. 미래 날짜를 입력해도 예약 게시가 되지 않습니다.
 
 현재는 기존 SPA 구조를 유지합니다. 글별 정적 HTML 생성·검색엔진용 메타 정보·RSS는 추가하지 않았습니다.
 
 구현 파일:
-- `src/data/posts.js`: Markdown·이미지 자동 수집 및 목록 정보
-- `src/lib/markdown.js`: 메타데이터, 본문 렌더링, 이미지 경로, 목차
-- `src/pages/JournalPage.vue`: 두 기록 페이지의 공통 목록
-- `src/pages/JournalPostPage.vue`: 공통 상세 글
-- `src/style.css`: 새 페이지를 포함한 모든 스타일
+- `src/entities/post/model/posts.ts`: Markdown·이미지 자동 수집 및 목록 정보
+- `src/shared/lib/markdown/markdown.ts`: 메타데이터, 본문 렌더링, 이미지 경로, 목차
+- `src/pages/journal/ui/JournalPage.vue`: 두 기록 페이지의 공통 목록
+- `src/pages/journal/ui/JournalPostPage.vue`: 공통 상세 글
+- `src/app/styles/style.css`: 새 페이지를 포함한 모든 스타일
 
 ## Labs · Markdown 만들기
 
@@ -160,16 +199,22 @@ npm run build
 3. Markdown 본문을 작성합니다. 본문에는 메타데이터를 붙이지 않습니다. 제목은 메타데이터의 `title`에만 저장하며 별도의 `# 제목`이나 이미지 예시를 자동 삽입하지 않습니다. 기존 작성 예시의 `이미지 첨부 예시` 주석과 `state-flow.svg` 예시 이미지가 함께 포함된 블록도 생성 시 제외합니다.
 4. **미리보기**로 제목·날짜·태그·본문·목차를 확인하고 **작성으로 돌아가기**로 계속 수정합니다. 기존 글 페이지와 동일한 Markdown 파서를 사용하므로 본문은 `##` 소제목부터 작성하세요. 로컬 이미지 업로드·미리보기 기능은 제공하지 않습니다.
 5. **MD 다운로드**를 누르면 UTF-8 `index.md` 파일이 생성됩니다. 제목·날짜·분류·본문은 필수이며, 특수문자가 포함된 메타데이터는 YAML 직렬화로 저장합니다.
-6. 다운로드한 파일을 `src/data/Engineering/글-폴더/` 또는 `src/data/Product Log/글-폴더/`에 넣고 기존 방식으로 빌드·배포합니다. 직접 작성한 이미지 참조가 있다면 이미지도 해당 경로에 배치합니다. 브라우저에서 중복 다운로드 시 `index (1).md`처럼 이름이 바뀔 수 있으므로 글 폴더에 MD 파일 하나만 남겨주세요.
+6. 다운로드한 파일을 `src/entities/post/content/Engineering/글-폴더/` 또는 `src/entities/post/content/Product Log/글-폴더/`에 넣고 기존 방식으로 빌드·배포합니다. 직접 작성한 이미지 참조가 있다면 이미지도 해당 경로에 배치합니다. 브라우저에서 중복 다운로드 시 `index (1).md`처럼 이름이 바뀔 수 있으므로 글 폴더에 MD 파일 하나만 남겨주세요.
 
 기록 위치 선택은 분류와 저장 위치 안내에 사용되며, 실제 게시 페이지는 파일을 넣는 디렉터리로 결정됩니다. 입력 내용은 현재 페이지에서만 유지되므로 페이지 이동·새로고침 전에 다운로드하세요. 자동 게시나 영구 초안 저장 기능은 포함하지 않습니다.
 
-- `src/pages/CreateMarkdownPage.vue`: 입력 폼·미리보기·파일 다운로드
-- `src/lib/createMarkdown.js`: 기존 게시 형식과 호환되는 Markdown 생성
-- `src/assets/icon-labs.svg`: Labs 메뉴 아이콘
+- `src/pages/create-markdown/ui/CreateMarkdownPage.vue`: 입력 폼·미리보기·파일 다운로드
+- `src/pages/create-markdown/lib/createMarkdown.ts`: 기존 게시 형식과 호환되는 Markdown 생성
+- `src/shared/assets/icon-labs.svg`: Labs 메뉴 아이콘
 
 ### 기존 Markdown 불러오기
 
 미리보기 오른쪽의 **불러오기** 버튼에서 `.md` 또는 `.markdown` 파일을 선택하면 제목·작성일·분류·태그·요약·본문을 폼에 채웁니다. `cover`는 가져오지 않으며, 현재 폼에 없는 추가 메타데이터도 저장 대상에 포함하지 않습니다. 본문에 직접 작성한 이미지 링크나 제목은 그대로 가져옵니다.
 
 분류를 기준으로 Engineering / Product Log를 자동 선택합니다. 태그는 문자열 배열이어야 하며, 날짜는 유효한 `YYYY-MM-DD`, 분류는 현재 드롭다운에서 제공하는 여섯 가지 중 하나여야 합니다. 요약·태그가 없으면 빈 값으로 채웁니다. 잘못된 파일은 오류를 표시하고 기존 폼을 유지합니다. 정상적으로 불러오면 현재 입력 내용을 교체하므로 보관할 내용은 먼저 다운로드하세요. 파일은 브라우저에서 읽으며 서버에 업로드하지 않습니다.
+
+## Labs · 이미지 PDF 및 UI 샘플
+
+- `/labs/imagestopdf`: JPG·PNG·WebP 선택, 순서 변경, 회전, 출력 설정, 취소, PDF 다운로드. 화면은 `src/pages/images-to-pdf/ui/ImagesToPdfPage.vue`, 페이지 배치·이미지 처리 함수는 `src/pages/images-to-pdf/lib/imagePdf.ts`입니다.
+- `/labs/sample`: 샘플 검색·카테고리·페이지 이동·실행·소스 보기·복사. 새 샘플 원본을 `src/pages/sample/examples/`에 넣고 `src/pages/sample/model/samples.ts`의 목록에 등록합니다.
+- 게시글 폴더명과 기존 경로(`/engineering/:slug`, `/product-log/:slug`)는 유지합니다. 콘텐츠 폴더를 다시 옮기면 `src/entities/post/model/posts.ts`의 glob과 경로 해석을 함께 변경해야 합니다.
