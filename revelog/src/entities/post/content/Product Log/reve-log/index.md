@@ -2,7 +2,7 @@
 title: "[개발일지] reve.log" # 포스팅 제목
 date: 2026-06-13 # 작성 일자
 category: 개발일지 # 카테고리 
-tags: [Vue, JavaScript] # 태그 
+tags: [Vue, TypeScript, FSD] # 태그 
 summary: "개인 경력기술서 · 포트폴리오 · 개발 기록 웹사이트 reve.log 개발일지" # 요약
 ---
 
@@ -24,6 +24,7 @@ Engineering과 Product Log 페이지를 추가했다.
 - **Side Project**: 사이드 프로젝트의 소개, 주요 기능, 구현 내용과 이미지 정리
 - **Engineering**: TIL, 트러블슈팅, 기술 분석 기록
 - **Product Log**: 프로젝트별 개발일지, 피드백, 회고 기록
+- **Labs** : 프론트엔드 관련 커스텀 프로그램 테스트 페이지 정리
 
 경력기술서와 사이드 프로젝트는 A4 문서 너비로 미리 볼 수 있으며,
 브라우저 인쇄 기능을 이용해 PDF로 저장할 수 있다.

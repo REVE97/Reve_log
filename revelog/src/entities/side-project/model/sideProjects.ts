@@ -97,7 +97,7 @@ export const sideProjects: SideProject[] = [
     subtitle: '경력과 프로젝트, 배움의 과정을 연결하는 개인 포트폴리오 · 개발 기록 웹사이트',
     period: '2026.06 — Update',
     github: 'https://github.com/REVE97/Reve_log',
-    skills: ['Vue 3', 'JavaScript', 'Vue Router', 'Vite'],
+    skills: ['Vue 3', 'TypeScript', 'Vue Router', 'Vite', 'FSD'],
     overview: [
       '경력기술서와 사이드 프로젝트 포트폴리오를 한곳에서 관리합니다.',
       'TIL, 트러블슈팅, 개발일지를 Markdown과 이미지로 기록하여 구현 결과와 학습 과정을 함께 보여줍니다.',
